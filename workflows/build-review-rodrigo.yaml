@@ -1,0 +1,16 @@
+version: 1
+name: build-review-rodrigo
+description: Implement the request, then review until approved.
+start: build
+stages:
+  - id: build
+    skill: |
+      You implement what the request asks for. Write files in the work directory.
+    on_success: review
+  - id: review
+    report_result: true
+    skill: |
+      You review the work. Read the files, then call submit_verdict.
+    on_success: end
+    on_fail: build
+    max_loops: 3
