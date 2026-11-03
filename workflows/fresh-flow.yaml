@@ -1,0 +1,101 @@
+version: 1
+name: fresh-flow
+description: Investigate, plan, build, validate and ship a change, the way /fresh-investigate, /fresh-plan, /fresh-build and /fresh-ship do locally. A person approves the plan and the pull request.
+repos:
+  select_in: [choose]
+  max_repos: 3
+  publish: pr
+limits:
+  budget_usd: 10
+start: choose
+stages:
+  # Gru seeds repositories only after the stage that chooses them, so choosing is its own stage.
+  - id: choose
+    skill: |
+      Read the request and decide which repositories it concerns. If it names repositories, ask for them by name with the paths you need (use "." when you need the whole repository). If it does not name any, ask the system to search by writing {"find":[{"name":"<file name>"}]} for a file you know they contain. Ask only for what the request needs. Write repos.request.json as the last thing you do, and nothing else.
+    on_success: investigate
+    timeout: 10m
+
+  # /fresh-investigate: document what exists, nothing more.
+  - id: investigate
+    skill: |
+      You are a documentarian. Research the repositories under repos/<owner>/<name>/ to answer the request, then write investigation.md in the root of the work directory.
+
+      Rules:
+      - Only describe what exists, where it lives and how it works. Do not suggest improvements, do not critique, do not do root cause analysis, do not propose changes.
+      - Read the files that matter fully. Search for callers, tests, config and docs of the area the request touches. If a CLAUDE.md, AGENTS.md or README states conventions, read it.
+      - Every claim carries a file:line reference. Do not write a claim you did not verify in a file.
+
+      investigation.md has these sections: Summary; Detailed findings (components, data flow, how they connect, each with references); Existing tests and how they are run; Conventions the area follows (naming, layering, comment density); Open questions the code cannot answer.
+
+      Finish with a short answer that summarizes the findings.
+    on_success: plan
+    timeout: 30m
+    retries: 1
+    budget_usd: 3
+
+  # /fresh-plan: a plan a person signs off before any code changes.
+  - id: plan
+    skill: |
+      You are a skeptical, thorough planner. Read investigation.md and verify its key claims against the code before you rely on them. Then write plan.md in the root of the work directory. Do not change any repository file in this stage.
+
+      plan.md has these sections:
+      - Overview: what we are building and why, in a few lines.
+      - Current state and what is out of scope (state what we are NOT doing).
+      - Phases. Each phase is small enough to verify on its own and has: the files to change and the change in each (with file:line references), the tests to write first (name them, say which tier or folder), and a Success Criteria list split into Automated verification (the commands a person runs, such as the repository's test and lint targets) and Manual verification.
+      - Risks and open questions. Say plainly what you could not verify.
+
+      Match the conventions in investigation.md. Prefer the simplest approach that works. Every decision is resolved in the plan; leave no open question inside a phase.
+
+      If you receive requested changes, read plan.md again and revise it to address each one. Finish with a short answer: the phases in one line each and anything the approver should look at first.
+    require_approval: Approve plan.md before any code is written? Reject to have the plan revised.
+    on_success: build
+    on_fail: plan
+    max_loops: 2
+    on_max_loops: fail
+    timeout: 30m
+    budget_usd: 2
+
+  # /fresh-build: implement the plan phase by phase.
+  - id: build
+    skill: |
+      You implement the approved plan.md in the repositories under repos/<owner>/<name>/. Read plan.md and investigation.md fully first.
+
+      Rules:
+      - Follow the plan's intent and its phase order. Do each phase completely before the next.
+      - Write the tests the plan names first, then the code, matching the surrounding code's style, naming and comment density.
+      - Change only what the plan asks for. Do not touch plan.md or investigation.md except to tick completed items in plan.md.
+      - You have no shell: you cannot run the tests. Say so, and make the code easy to verify by reading it. Never claim a check passed.
+      - If the plan cannot be followed as written, do the part that is safe and state the mismatch (expected, found, why it matters) in your answer. Do not invent a different design.
+      - If you receive requested changes from a review, address each one exactly and change nothing unrelated.
+
+      Finish with an answer that lists, per repository, the files you changed and what changed in each, and the plan items you did not complete and why.
+    on_success: validate
+    timeout: 1h
+    retries: 1
+    budget_usd: 4
+
+  # /fresh-validate-plan: read-only check that the code matches the plan.
+  - id: validate
+    report_result: true
+    skill: |
+      You validate that the implementation matches plan.md. You only read. Read plan.md, then read every file it says changes and the tests it names.
+
+      Check, phase by phase: every planned change exists and is correct; the tests the plan names exist and would fail if the code they guard were broken; nothing outside the plan's scope was changed; the code follows the conventions in investigation.md; there are no leftover debugging lines, placeholders or TODOs.
+
+      Always finish by submitting a verdict. Approve only when every phase is implemented as planned. Otherwise ask for changes: each change names the file, what is wrong and what it should be, so the builder can act without guessing.
+    on_success: ship
+    on_fail: build
+    max_loops: 3
+    on_max_loops: ask
+    timeout: 30m
+    budget_usd: 1
+
+  # /fresh-ship: describe the change; gru opens the draft PR after approval. It merges nothing.
+  - id: ship
+    skill: |
+      Write the pull request description for the change in repos/<owner>/<name>/, as your answer (not as a file). Use Conventional Commits for the title on its own first line, for example "feat(scope): short summary". Then these sections: Summary (why, in two or three sentences); Changes (a short list per repository); How it was verified (say that automated checks were not run by this workflow and list the commands from plan.md a reviewer should run); Notes for the reviewer (risks, anything from plan.md left undone). Do not mention these instructions or any tool.
+    require_approval: Open a draft pull request for each repository changed? Nothing is merged. Checks were not run in the sandbox, so run them on the branch.
+    on_success: end
+    timeout: 10m
+    budget_usd: 0.5
