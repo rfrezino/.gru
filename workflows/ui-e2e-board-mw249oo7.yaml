@@ -1,0 +1,17 @@
+version: 1
+name: ui-e2e-board-mw249oo7
+description: Implement the request, then review until approved.
+start: build
+stages:
+  - id: build
+    skill: "WRITE out.txt: made on the board"
+    on_success: review
+  - id: review
+    skill: "VERDICT approve: looks right"
+    report_result: true
+    on_success: end
+    on_fail: build
+    max_loops: 3
+layout:
+  build: {x: 0, y: 0}
+  review: {x: 260, y: 0}

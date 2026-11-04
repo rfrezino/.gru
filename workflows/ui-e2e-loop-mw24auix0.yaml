@@ -1,0 +1,17 @@
+version: 1
+name: ui-e2e-loop-mw24auix0
+start: build
+stages:
+  - id: build
+    skill: |
+      [iter=0] WRITE doc.md: first draft
+      [iter=1] WRITE doc.md: revised draft
+    on_success: review
+  - id: review
+    report_result: true
+    skill: |
+      [iter=0] VERDICT changes: not yet | add a conclusion
+      [iter=1] VERDICT approve: good now
+    on_success: end
+    on_fail: build
+    max_loops: 3

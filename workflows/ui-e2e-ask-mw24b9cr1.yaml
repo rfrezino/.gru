@@ -1,0 +1,8 @@
+version: 1
+name: ui-e2e-ask-mw24b9cr1
+start: pick
+stages:
+  - id: pick
+    skill: |
+      ASK-CHOICE eu|us: Which region? UI-E2E-STAGE-CANARY
+    on_success: end

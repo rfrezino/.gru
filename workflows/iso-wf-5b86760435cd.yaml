@@ -1,0 +1,7 @@
+version: 1
+name: iso-wf-5b86760435cd
+start: a
+stages:
+  - id: a
+    skill: say it
+    on_success: end

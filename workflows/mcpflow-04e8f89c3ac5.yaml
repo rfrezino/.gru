@@ -1,0 +1,7 @@
+version: 1
+name: mcpflow-04e8f89c3ac5
+start: a
+stages:
+  - id: a
+    skill: "WRITE note.txt: hello-from-the-run"
+    on_success: end

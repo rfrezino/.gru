@@ -1,0 +1,7 @@
+version: 1
+name: mcpwait-7c32478bb66e
+start: a
+stages:
+  - id: a
+    skill: "ASK: which one?"
+    on_success: end
