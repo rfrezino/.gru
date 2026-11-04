@@ -6,7 +6,7 @@ repos:
   max_repos: 3
   publish: pr
 limits:
-  budget_usd: 10
+  budget_usd: 14
 start: choose
 stages:
   # Gru seeds repositories only after the stage that chooses them, so choosing is its own stage.
@@ -32,7 +32,7 @@ stages:
     on_success: plan
     timeout: 30m
     retries: 1
-    budget_usd: 3
+    budget_usd: 5
 
   # /fresh-plan: a plan a person signs off before any code changes.
   - id: plan
