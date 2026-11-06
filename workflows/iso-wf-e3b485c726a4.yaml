@@ -1,0 +1,7 @@
+version: 1
+name: iso-wf-e3b485c726a4
+start: a
+stages:
+  - id: a
+    skill: say it
+    on_success: end
