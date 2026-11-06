@@ -1,0 +1,7 @@
+version: 1
+name: okf
+marketplace:
+  repo: scaccogatto/okf-skills
+  name: scaccogatto
+plugin: okf
+sha: c6591ece20f35299b0d483168b376d550787c735
