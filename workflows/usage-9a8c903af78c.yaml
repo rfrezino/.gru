@@ -1,0 +1,10 @@
+version: 1
+name: usage-9a8c903af78c
+start: a
+stages:
+  - id: a
+    skill: say one
+    on_success: b
+  - id: b
+    skill: say two
+    on_success: end
