@@ -1,0 +1,36 @@
+# Update Log
+
+## 2026-10-13
+* **Creation**: Scaffolded the gru agents control plane bundle with `okf_init.py` and populated it from the repository state: [architecture](/architecture/overview.md), [components](/components/index.md), [decisions](/decisions/index.md), the [backend plan](/plans/backend-service.md) and [runbooks](/runbooks/index.md).
+
+## 2026-10-14
+* **Update**: [Backend service](/plans/backend-service.md) now reflects the spec and phase plans: MySQL chosen, no ORM, vendored AX proto, phases 1-3 planned, 4-6 outlined.
+* **Update**: [Backend service](/plans/backend-service.md): Phase 1 skeleton implemented in `api/` (domain, use cases, in-memory adapters, HTTP adapter, layering test, `make api-check`).
+* **Update**: Phase 2 spikes done: [decision 006](/decisions/006-result-via-runner-http-and-router.md) (result channel) and AX adapter findings recorded; `make api-proto` vendors the AX proto and generates a Go client.
+* **Regeneration**: Concepts refreshed from the repository after the backend was built and verified (MySQL store, result-serving runner, AX adapter, reconciler, CLI API mode, in-cluster deployment, token auth): [architecture](/architecture/overview.md), [gru CLI](/components/gru-cli.md), [task image](/components/task-image.md), [AX](/components/ax.md), [dev environment](/components/dev-environment.md), [local development](/runbooks/local-development.md) and [troubleshooting](/runbooks/troubleshooting.md). New: [gru-api](/components/gru-api.md), [its deployment](/components/gru-api-deployment.md), [decision 007](/decisions/007-both-cli-paths-and-own-sandbox-prefix.md) and [decision 008](/decisions/008-bearer-tokens-and-ownership.md).
+* **Supersession**: [Decision 006](/decisions/006-result-via-runner-http-and-router.md) is now accepted and supersedes [decision 003](/decisions/003-result-via-workspace-file.md) for the API path only; 003 stays in force for the CLI's direct-AX path. The planned backend described in [plans/backend-service](/plans/backend-service.md) now exists as [gru-api](/components/gru-api.md); that concept was rewritten to hold only the remaining GKE work.
+* **Update**: New [test tiers and layout](/components/testing.md) concept: every project follows `<project>/tests/{unit,integration,acceptance}` with `tests/e2e` at the top; references to `api/e2e`, `api-test-db` and `gru-test` updated.
+* **Update**: [Decision 009](/decisions/009-floci-provides-all-gcp-shaped-infra.md): the dev database is now a Cloud SQL instance in [floci](/components/floci.md) (`make db-up`) instead of a plain MySQL Deployment; floci's pod gained a Docker-in-Docker sidecar.
+* **Update**: New [LLM providers](/components/llm-providers.md) concept. The sandbox agent is now Go (`images/task/agent`), behind a provider port implemented with `any-llm-go`; the task image is `debian:bookworm-slim` with no Python and the Task command is `/usr/local/bin/gru-agent`.
+* **Update**: [Decision 010](/decisions/010-pluggable-llm-providers-through-a-catalog.md): LLM providers are catalog entries read by the API, the CLI and the Go agent; `gru-api --print-key-envs`, the catalog-driven dev scripts and the `providers` kustomize component are in place.
+
+## 2026-10-15
+* **Update**: [Decision 011](/decisions/011-agents-ask-and-wait-suspended.md): agents can ask the user a question and wait for the answer. New `AwaitingInput` status, stored questions and answers, a suspended sandbox while waiting, `openapi.yaml`, and `gru inputs` / `gru answer`; see [gru-api](/components/gru-api.md), [task image](/components/task-image.md) and [gru CLI](/components/gru-cli.md).
+* **Update**: `images/claude-task` is now `images/task` (the image serves every provider) and the image tag is `gru-task`.
+* **Update**: New [web UI](/components/ui.md) concept (`ui/`, TypeScript) and the `ask_user` tool in the agent ([decision 011](/decisions/011-agents-ask-and-wait-suspended.md)); [testing](/components/testing.md) lists the UI's tiers.
+* **Update**: Conversations ([decision 011](/decisions/011-agents-ask-and-wait-suspended.md)): `mode: chat` on tasks, `gru chat`, a conversation view in the [web UI](/components/ui.md).
+* **Update**: Provider catalog entries can list `models` ([LLM providers](/components/llm-providers.md)); the UI offers them as a list and the API refuses any other model.
+* **Update**: [Decision 012](/decisions/012-agents-work-on-files-in-a-confined-directory.md): a workflow stage's agent gets confined file tools, a system message, a structured review verdict and a one-shot switch; see the [task image](/components/task-image.md).
+* **Update**: Workspace transfer: the runner exports and imports `/workspace/work` as a hardened tar.gz and reports the review verdict; the agent waits for the import ([task image](/components/task-image.md)). [Decision 013](/decisions/013-sandbox-hardening-outcome.md) records the image-hardening spike as proposed, not done.
+* **Update**: The workflow editor has a drawable board ([web UI](/components/ui.md)): React Flow, a draft that the server renders to YAML, a side panel for every action.
+* **Update**: Workflow schema version 2 (`timeout`, `retries`; [gru-api](/components/gru-api.md)); loops, caps and gates are covered end to end, and the run events carry verdicts, loops and caps.
+* **Update**: [Decision 014](/decisions/014-temporal-runs-the-workflows.md): workflow runs execute on Temporal (a fixed interpreter over a compiled plan, a separate worker Deployment, a dev server in k3d); the run reconciler is gone and the HTTP contract is unchanged. See [gru-api](/components/gru-api.md) and its [deployment](/components/gru-api-deployment.md).
+
+## 2026-10-16
+* **Update**: Workflows have one kind of stage with options (`report_result`, `require_approval`, `ends`) and two outlets (`on_success`, `on_fail`); a failing stage can have a route; the board and the YAML speak only this model ([gru-api](/components/gru-api.md), [decision 014](/decisions/014-temporal-runs-the-workflows.md)).
+
+## 2026-10-22
+* **Update**: [Decision 016](/decisions/016-code-search-is-a-separate-mirror-service.md) and the [code-search service](/components/codesearch.md): agents search repositories without cloning them through a separate mirror service reached only through gru-api; four tools for the Claude Code runner.
+
+## 2026-10-28
+* **Update**: The `gru` CLI and its direct-AX path were retired: gru-api over HTTP or MCP is the only way in. [gru CLI](/components/gru-cli.md) and [decision 007](/decisions/007-both-cli-paths-and-own-sandbox-prefix.md) are kept as history; `submit_task` gained `mode: chat`.
