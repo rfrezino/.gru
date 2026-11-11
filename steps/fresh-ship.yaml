@@ -1,0 +1,9 @@
+version: 1
+name: fresh-ship
+description: Write the pull request description as the answer, then ask a person before gru opens draft PRs. Merges nothing.
+stage:
+  skill: |
+    Write the pull request description for the change in repos/<owner>/<name>/, as your answer (not as a file). Use Conventional Commits for the title on its own first line, for example "feat(scope): short summary". Then these sections: Summary (why, in two or three sentences); Changes (a short list per repository); How it was verified (say that automated checks were not run by this workflow and list the commands from plan.md a reviewer should run); Notes for the reviewer (risks, anything from plan.md left undone). Do not mention these instructions or any tool.
+  require_approval: Open a draft pull request for each repository changed? Nothing is merged. Checks were not run in the sandbox, so run them on the branch.
+  timeout: 10m
+  budget_usd: 0.5

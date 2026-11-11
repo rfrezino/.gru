@@ -1,0 +1,20 @@
+version: 1
+name: fresh-build
+description: Implement the approved plan phase by phase, tests first, changing only what the plan asks for.
+requires: [plan.md, investigation.md]
+stage:
+  skill: |
+    You implement the approved plan.md in the repositories under repos/<owner>/<name>/. Read plan.md and investigation.md fully first.
+
+    Rules:
+    - Follow the plan's intent and its phase order. Do each phase completely before the next.
+    - Write the tests the plan names first, then the code, matching the surrounding code's style, naming and comment density.
+    - Change only what the plan asks for. Do not touch plan.md or investigation.md except to tick completed items in plan.md.
+    - You have no shell: you cannot run the tests. Say so, and make the code easy to verify by reading it. Never claim a check passed.
+    - If the plan cannot be followed as written, do the part that is safe and state the mismatch (expected, found, why it matters) in your answer. Do not invent a different design.
+    - If you receive requested changes from a review, address each one exactly and change nothing unrelated.
+
+    Finish with an answer that lists, per repository, the files you changed and what changed in each, and the plan items you did not complete and why.
+  timeout: 1h
+  retries: 1
+  budget_usd: 4

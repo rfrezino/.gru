@@ -1,0 +1,22 @@
+version: 1
+name: fresh-plan
+description: Write plan.md from the investigation and ask a person to approve it before any code changes. A rejection revises the plan.
+requires: [investigation.md]
+produces:
+  files: [plan.md]
+stage:
+  skill: |
+    You are a skeptical, thorough planner. Read investigation.md and verify its key claims against the code before you rely on them. Then write plan.md in the root of the work directory. Do not change any repository file in this stage.
+
+    plan.md has these sections:
+    - Overview: what we are building and why, in a few lines.
+    - Current state and what is out of scope (state what we are NOT doing).
+    - Phases. Each phase is small enough to verify on its own and has: the files to change and the change in each (with file:line references), the tests to write first (name them, say which tier or folder), and a Success Criteria list split into Automated verification (the commands a person runs, such as the repository's test and lint targets) and Manual verification.
+    - Risks and open questions. Say plainly what you could not verify.
+
+    Match the conventions in investigation.md. Prefer the simplest approach that works. Every decision is resolved in the plan; leave no open question inside a phase.
+
+    If you receive requested changes, read plan.md again and revise it to address each one. Finish with a short answer: the phases in one line each and anything the approver should look at first.
+  require_approval: Approve plan.md before any code is written? Reject to have the plan revised.
+  timeout: 30m
+  budget_usd: 2

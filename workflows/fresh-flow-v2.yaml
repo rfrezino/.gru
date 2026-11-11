@@ -1,0 +1,40 @@
+version: 1
+name: fresh-flow-v2
+description: Investigate, plan, build, validate and ship a change, the way /fresh-investigate, /fresh-plan, /fresh-build and /fresh-ship do locally. A person approves the plan and the pull request. The stage texts live in the fresh-* steps; this file is only the wiring.
+repos:
+  select_in: [choose]
+  max_repos: 3
+  publish: pr
+limits:
+  budget_usd: 14
+start: choose
+stages:
+  - id: choose
+    use: fresh-choose-repos@1
+    on_success: investigate
+
+  - id: investigate
+    use: fresh-investigate@1
+    on_success: plan
+
+  - id: plan
+    use: fresh-plan@1
+    on_success: build
+    on_fail: plan
+    max_loops: 2
+    on_max_loops: fail
+
+  - id: build
+    use: fresh-build@1
+    on_success: validate
+
+  - id: validate
+    use: fresh-validate@1
+    on_success: ship
+    on_fail: build
+    max_loops: 3
+    on_max_loops: ask
+
+  - id: ship
+    use: fresh-ship@1
+    on_success: end

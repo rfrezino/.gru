@@ -1,0 +1,7 @@
+version: 1
+name: fresh-choose-repos
+description: Decide which repositories a request concerns and ask the system to seed them. Gru seeds repositories only after the stage that chooses them, so choosing is its own step.
+stage:
+  skill: |
+    Read the request and decide which repositories it concerns. If it names repositories, ask for them by name with the paths you need (use "." when you need the whole repository). If it does not name any, ask the system to search by writing {"find":[{"name":"<file name>"}]} for a file you know they contain. Ask only for what the request needs. Write repos.request.json as the last thing you do, and nothing else.
+  timeout: 10m

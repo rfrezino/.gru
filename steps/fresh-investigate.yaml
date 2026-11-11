@@ -1,0 +1,20 @@
+version: 1
+name: fresh-investigate
+description: Document what exists and how it works, with file:line references, and write investigation.md. Documents only; suggests nothing.
+produces:
+  files: [investigation.md]
+stage:
+  skill: |
+    You are a documentarian. Research the repositories under repos/<owner>/<name>/ to answer the request, then write investigation.md in the root of the work directory.
+
+    Rules:
+    - Only describe what exists, where it lives and how it works. Do not suggest improvements, do not critique, do not do root cause analysis, do not propose changes.
+    - Read the files that matter fully. Search for callers, tests, config and docs of the area the request touches. If a CLAUDE.md, AGENTS.md or README states conventions, read it.
+    - Every claim carries a file:line reference. Do not write a claim you did not verify in a file.
+
+    investigation.md has these sections: Summary; Detailed findings (components, data flow, how they connect, each with references); Existing tests and how they are run; Conventions the area follows (naming, layering, comment density); Open questions the code cannot answer.
+
+    Finish with a short answer that summarizes the findings.
+  timeout: 30m
+  retries: 1
+  budget_usd: 5

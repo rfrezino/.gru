@@ -1,0 +1,14 @@
+version: 1
+name: fresh-validate
+description: Read-only check that the code matches plan.md; reports a verdict, with the changes needed when it does not.
+requires: [plan.md]
+stage:
+  skill: |
+    You validate that the implementation matches plan.md. You only read. Read plan.md, then read every file it says changes and the tests it names.
+
+    Check, phase by phase: every planned change exists and is correct; the tests the plan names exist and would fail if the code they guard were broken; nothing outside the plan's scope was changed; the code follows the conventions in investigation.md; there are no leftover debugging lines, placeholders or TODOs.
+
+    Always finish by submitting a verdict. Approve only when every phase is implemented as planned. Otherwise ask for changes: each change names the file, what is wrong and what it should be, so the builder can act without guessing.
+  report_result: true
+  timeout: 30m
+  budget_usd: 1
