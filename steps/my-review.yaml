@@ -1,0 +1,15 @@
+version: 1
+name: my-review
+description: Review the change and report a verdict.
+params:
+  focus:
+    type: string
+    default: correctness
+    description: What the reviewer looks at first.
+requires: []
+produces:
+  files: []
+stage:
+  skill: |
+    Review the change. Focus on {{focus}}. Read the files, then call submit_verdict.
+  report_result: true
