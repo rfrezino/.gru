@@ -1,0 +1,19 @@
+description: Task image with the latest Trivy vulnerability scanner
+dockerfile: |
+  FROM ${GRU_BASE_IMAGE}
+
+  # Leave TRIVY_VERSION empty to install the latest release at build time.
+  ARG TRIVY_VERSION=
+  RUN set -eux; \
+      apt-get update; \
+      apt-get install -y --no-install-recommends ca-certificates curl tar; \
+      arch="$(dpkg --print-architecture)"; \
+      case "$arch" in amd64) t=64bit ;; arm64) t=ARM64 ;; *) echo "unsupported arch $arch" >&2; exit 1 ;; esac; \
+      if [ -z "${TRIVY_VERSION}" ]; then \
+        TRIVY_VERSION="$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/aquasecurity/trivy/releases/latest | sed 's#.*/tag/v##')"; \
+      fi; \
+      curl -fsSL -o /tmp/trivy.tgz "https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-${t}.tar.gz"; \
+      tar -xzf /tmp/trivy.tgz -C /usr/local/bin trivy; \
+      rm -f /tmp/trivy.tgz; \
+      rm -rf /var/lib/apt/lists/*; \
+      trivy --version
