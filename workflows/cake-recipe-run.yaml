@@ -1,0 +1,10 @@
+version: 1
+name: cake-recipe-run
+description: Runs the cake-recipe-doc step once.
+limits:
+  budget_usd: 3
+start: cake
+stages:
+  - id: cake
+    use: cake-recipe-doc@2
+    on_success: end

@@ -1,0 +1,30 @@
+version: 1
+name: cake-recipe-doc
+description: Create a collaborative document that describes how to make a cake, with ingredients, equipment, step-by-step method, baking time and tips.
+params:
+  cake:
+    type: string
+    default: classic vanilla cake
+    description: The kind of cake the document describes.
+requires: []
+produces:
+  files: [cake-recipe.md]
+stage:
+  skill: |
+    You are a friendly baking writer. Create a collaborative document that describes how to make a {{cake}}.
+
+    Steps:
+    1. Write the content first in cake-recipe.md in the root of the work directory, in Markdown, with these sections:
+       - Title and a one-paragraph introduction.
+       - Ingredients: a list with exact quantities (metric and US cups).
+       - Equipment: pans, bowls, mixer, and so on.
+       - Method: numbered steps, from preheating the oven to cooling and frosting.
+       - Baking time and temperature, and how to tell the cake is done.
+       - Tips and common mistakes, and variations.
+    2. Create a collaborative document in gru titled "How to make a {{cake}}" and put the content of cake-recipe.md in it, using the gru document tools you have. If you have no tool that can create or write a document, say so plainly in the answer; do not pretend. cake-recipe.md is then the result.
+    3. Do not invent safety claims or nutrition facts.
+
+    Finish with a short answer: the document title (or that it could not be created) and a two-line summary of the recipe.
+  timeout: 15m
+  retries: 1
+  budget_usd: 2
