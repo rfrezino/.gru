@@ -1,7 +1,19 @@
 ---
-type: "Decision"
-title: "Code search is a separate mirror service reached only through gru-api"
-description: "Sandbox agents search repositories without cloning them through a separate service that keeps shallow default-branch mirrors and runs git grep; the control plane mints its read tokens and is the only way in."
+type: Decision
+title: Code search is a separate mirror service reached only through gru-api
+description: Sandbox agents search repositories without cloning them through a separate service that keeps shallow default-branch mirrors and runs git grep; the control plane mints its read tokens and is the only way in.
+tags: [decision, codesearch, github, agent, security]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-22T13:00:00Z }
+sources:
+  - resource: codesearch/
+  - resource: api/internal/app/codesearchuse.go
+  - resource: api/internal/adapters/in/codesearchgw/handler.go
+  - resource: api/internal/adapters/in/internalapi/handler.go
+  - resource: images/task/agent/internal/mcpbridge/searchtools.go
+  - resource: docs/codesearch.md
+  - resource: .claude/thoughts/investigations/2026-10-21-codesearch-service.md
+  - resource: .claude/thoughts/investigations/2026-10-21-sourcebot-code-search.md
 ---
 
 # Context

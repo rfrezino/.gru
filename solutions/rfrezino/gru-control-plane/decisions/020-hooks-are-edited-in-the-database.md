@@ -1,7 +1,17 @@
 ---
-type: "Decision"
-title: "The prompt hooks live in the database and are edited by named admins, with the file as a seed"
-description: "Hooks are stored as numbered versions, edited in the UI, over HTTP or with MCP tools by the people in GRU_HOOKS_ADMINS, checked like the file was, and applied live; GRU_HOOKS_FILE only seeds version 1."
+type: Decision
+title: The prompt hooks live in the database and are edited by named admins, with the file as a seed
+description: Hooks are stored as numbered versions, edited in the UI, over HTTP or with MCP tools by the people in GRU_HOOKS_ADMINS, checked like the file was, and applied live; GRU_HOOKS_FILE only seeds version 1.
+tags: [decision, hooks, ui, security, mcp]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-28T18:00:00Z }
+sources:
+  - resource: api/internal/app/hookconfig.go
+  - resource: api/internal/adapters/out/store/hooks.go
+  - resource: api/internal/adapters/in/http/hooks.go
+  - resource: api/internal/adapters/in/mcpserver/hooksadmin.go
+  - resource: ui/src/pages/Hooks.tsx
+  - resource: docs/hooks.md
 ---
 
 # Context

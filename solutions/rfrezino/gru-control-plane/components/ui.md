@@ -1,7 +1,15 @@
 ---
-type: "Component"
-title: "Web UI"
-description: "TypeScript single-page app to start runs, see what needs an answer, answer an agent's questions and read each run as a thread; the only non-Go project."
+type: Component
+title: Web UI
+description: TypeScript single-page app to start runs, see what needs an answer, answer an agent's questions and read each run as a thread; the only non-Go project.
+resource: ui/
+tags: [ui, typescript]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-15T23:00:00Z }
+sources:
+  - resource: ui/README.md
+  - resource: ui/src/api/client.ts
+  - resource: api/gru_api/host/http/spec.py
 ---
 
 > Superseded in part by [decision 021](/decisions/021-python-control-plane.md): the UI is no longer "the only non-Go project": the backend is Python, the runner is the one Go program, and the UI stays the TypeScript project.
@@ -24,3 +32,7 @@ Needs you (the inbox: tasks whose agent asked something, answered in place), Run
 # Tests
 
 The four tiers as in [testing](/components/testing.md): `make ui-unit`, `ui-integration` (jsdom against a real `gru-api --fake`, built by the global setup), `ui-acceptance` (Chromium against the built UI and the same API) and `ui-e2e` (`tests/e2e/ui`, the browser against the `gru-api` deployed in the dev cluster, with the real sandbox suspended and resumed).
+
+# Solutions Overview pages
+
+`/solutions` (every member, shown in the sidebar only when `GET /v1/organization/features` says it is on) lists the selected repositories as cards with status, generated sha and time; `/solutions/:owner/:name` is the viewer (a document tree, a document rendered as markdown text and never as HTML, and a native graph on `@xyflow/react`, with the concept graph's neighbours computed by `ui/src/lib/okfGraph.ts`). `/settings/solutions` (`<AdminOnly area="solutions">`) holds the switch, `interval_days`, `budget_usd`, a repository picker and the status table with "Update now" and "Regenerate anyway". An `OriginBadge` marks runs and usage rows that gru or a schedule started. See [decision 032](/decisions/032-solutions-overview-and-scheduler.md).

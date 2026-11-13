@@ -1,7 +1,17 @@
 ---
-type: "Decision"
-title: "Prompt hooks are operator policy, run by an agent task of their own"
-description: "The operator can add instructions to the agent's system message, refuse requests by pattern, and have a model rewrite the request before the agent starts; hooks apply to every task and run, fail closed, and keep the user's text beside the rewrite."
+type: Decision
+title: Prompt hooks are operator policy, run by an agent task of their own
+description: The operator can add instructions to the agent's system message, refuse requests by pattern, and have a model rewrite the request before the agent starts; hooks apply to every task and run, fail closed, and keep the user's text beside the rewrite.
+tags: [decision, hooks, agent, security, gateway]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-23T18:00:00Z }
+sources:
+  - resource: api/internal/domain/hook/hook.go
+  - resource: api/internal/app/hooks.go
+  - resource: api/internal/app/hookagent.go
+  - resource: api/internal/adapters/out/hooksyaml/hooksyaml.go
+  - resource: docs/hooks.md
+  - resource: .claude/thoughts/plans/in-progress/2026-10-23-prompt-hooks.md
 ---
 
 # Context

@@ -1,7 +1,18 @@
 ---
-type: "Decision"
-title: "Temporal runs workflows; a fixed interpreter executes a compiled plan of the user's YAML"
-description: "Users write simple YAML; the server compiles it to a plan and one fixed Temporal workflow interprets it, with stage tasks as activities, gates as signals and timers, and MySQL as the read model."
+type: Decision
+title: Temporal runs workflows; a fixed interpreter executes a compiled plan of the user's YAML
+description: Users write simple YAML; the server compiles it to a plan and one fixed Temporal workflow interprets it, with stage tasks as activities, gates as signals and timers, and MySQL as the read model.
+tags: [decision, workflows, temporal, engine]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-15T23:59:00Z }
+sources:
+  - resource: api/internal/domain/workflow/plan.go
+  - resource: api/internal/domain/workflow/branch.go
+  - resource: api/internal/app/runloop.go
+  - resource: api/internal/app/runstage.go
+  - resource: api/internal/adapters/out/temporal/workflow.go
+  - resource: api/internal/adapters/out/temporal/engine.go
+  - resource: .claude/thoughts/investigations/2026-10-15-temporal-run-engine.md
 ---
 
 # Context

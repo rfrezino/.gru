@@ -1,7 +1,22 @@
 ---
-type: "External Dependency"
-title: "google/ax"
-description: "Declarative agent-task orchestrator on Kubernetes; what it provides and what it does not."
+type: External Dependency
+title: google/ax
+description: Declarative agent-task orchestrator on Kubernetes; what it provides and what it does not.
+resource: https://github.com/google/ax
+tags: [ax, external, upstream]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+stale_after: 2026-12-31T00:00:00Z
+sources:
+  - id: server
+    resource: https://github.com/google/ax/blob/ac2332829f22360ff97b0ba34d94dd0dd782f17e/internal/server/server.go
+    title: ax-server gRPC server setup
+  - id: proto
+    resource: https://github.com/google/ax/blob/ac2332829f22360ff97b0ba34d94dd0dd782f17e/pkg/apis/v1alpha1/ax.proto
+    title: ax.v1alpha1 API
+  - id: queue
+    resource: https://github.com/google/ax/blob/ac2332829f22360ff97b0ba34d94dd0dd782f17e/internal/lock/lock.go
+    title: resource locking that replaced the queue
 ---
 
 Pinned at `ac23328` (2026-09-27); pre-1.0 and breaking changes are expected.

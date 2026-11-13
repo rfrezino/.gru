@@ -1,7 +1,12 @@
 ---
-type: "Decision"
-title: "Use k3d instead of kind or vind for local development"
-description: "kind and vind cannot start nodes on the current Docker Desktop VM; k3d can."
+type: Decision
+title: Use k3d instead of kind or vind for local development
+description: kind and vind cannot start nodes on the current Docker Desktop VM; k3d can.
+tags: [decision, k3d, kind, docker-desktop]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-13T20:00:00Z }
+sources:
+  - resource: dev/k3d.yaml
 ---
 
 # Context

@@ -1,7 +1,19 @@
 ---
-type: "Decision"
-title: "Organizations, roles and the web surface"
-description: "Roles live in gru and are checked in the use cases, another organization's rows are 404, API-key secrets are shown once and never travel over MCP, GitHub connects through a signed state, and the UI gates its links by the role the server reports."
+type: Decision
+title: Organizations, roles and the web surface
+description: Roles live in gru and are checked in the use cases, another organization's rows are 404, API-key secrets are shown once and never travel over MCP, GitHub connects through a signed state, and the UI gates its links by the role the server reports.
+tags: [decision, multi-tenancy, roles, api-keys, github, ui]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-11-02T19:00:00Z }
+sources:
+  - resource: api/gru_api/domain/use_cases/members.py
+  - resource: api/gru_api/domain/use_cases/api_keys.py
+  - resource: api/gru_api/domain/use_cases/organization_view.py
+  - resource: api/gru_api/domain/use_cases/github_connect.py
+  - resource: api/gru_api/host/http/routers/org_self.py
+  - resource: api/gru_api/host/mcp/organization.py
+  - resource: ui/src/lib/org.ts
+  - resource: docs/organizations.md
 ---
 
 # Context

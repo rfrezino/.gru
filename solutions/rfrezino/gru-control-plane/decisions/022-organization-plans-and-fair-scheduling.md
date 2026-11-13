@@ -1,7 +1,17 @@
 ---
-type: "Decision"
-title: "Plans are data, spend is capped per organization month, and the reconciler schedules fairly"
-description: "An organization's limits come from a plan row with per-organization overrides, LLM spend is capped per UTC month by a third counter in the same reservation, quotas are checked where work is accepted, claiming is shared round-robin across organizations, and usage is exported to billing as numbers."
+type: Decision
+title: Plans are data, spend is capped per organization month, and the reconciler schedules fairly
+description: An organization's limits come from a plan row with per-organization overrides, LLM spend is capped per UTC month by a third counter in the same reservation, quotas are checked where work is accepted, claiming is shared round-robin across organizations, and usage is exported to billing as numbers.
+tags: [decision, multi-tenancy, budget, quotas, scheduling]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-11-02T18:00:00Z }
+sources:
+  - resource: api/gru_api/domain/use_cases/plans.py
+  - resource: api/gru_api/domain/use_cases/quota.py
+  - resource: api/gru_api/domain/fair_claim.py
+  - resource: api/gru_api/domain/use_cases/org_usage.py
+  - resource: api/gru_api/adapters/mysql/ledger.py
+  - resource: docs/usage-and-limits.md
 ---
 
 # Context

@@ -1,7 +1,13 @@
 ---
-type: "Decision"
-title: "Bearer-token authentication with per-requester ownership"
-description: "Callers authenticate with hashed bearer tokens behind an Authenticator seam, and every task belongs to its requester."
+type: Decision
+title: Bearer-token authentication with per-requester ownership
+description: Callers authenticate with hashed bearer tokens behind an Authenticator seam, and every task belongs to its requester.
+tags: [decision, security, auth, api]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - resource: api/internal/adapters/in/http/auth.go
+  - resource: api/internal/app/get_task.go
 ---
 
 # Context

@@ -1,7 +1,10 @@
 ---
-type: "Reference"
-title: "Start here"
-description: "How this bundle is organized and which concept to read first."
+type: Reference
+title: Start here
+description: How this bundle is organized and which concept to read first.
+tags: [getting-started]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
 ---
 
 # Reading order

@@ -1,7 +1,13 @@
 ---
-type: "Decision"
-title: "Dev uses direct sandbox egress and a TCP MSS clamp"
-description: "Two dev-only network fixes that let sandboxes reach LLM APIs; neither is valid for a shared cluster."
+type: Decision
+title: Dev uses direct sandbox egress and a TCP MSS clamp
+description: Two dev-only network fixes that let sandboxes reach LLM APIs; neither is valid for a shared cluster.
+tags: [decision, egress, mtu, networking, security]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-13T20:00:00Z }
+sources:
+  - resource: dev/scripts/egress-direct.sh
+  - resource: Makefile
 ---
 
 # Context

@@ -1,7 +1,16 @@
 ---
-type: "Decision"
-title: "Prompts are kept with the task and the run"
-description: "A task's prompt and a run's prompt stay in MySQL after the work ends, and the single-item GET returns them to their owner, so the full picture (asked, asked back, answered) is visible."
+type: Decision
+title: Prompts are kept with the task and the run
+description: A task's prompt and a run's prompt stay in MySQL after the work ends, and the single-item GET returns them to their owner, so the full picture (asked, asked back, answered) is visible.
+tags: [decision, privacy, history, api]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-20T21:30:00Z }
+sources:
+  - resource: api/internal/app/drive.go
+  - resource: api/internal/domain/workflowrun.go
+  - resource: api/internal/adapters/in/http/handler.go
+  - resource: api/internal/adapters/in/http/runs.go
+  - resource: api/gru_api/host/http/spec.py
 ---
 
 ## Context

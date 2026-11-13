@@ -1,7 +1,20 @@
 ---
-type: "Decision"
-title: "Gru staff live in the database, act in any organization through a header, and every change is audited; admins can lend members scoped, expiring grants"
+type: Decision
+title: Gru staff live in the database, act in any organization through a header, and every change is audited; admins can lend members scoped, expiring grants
 description: "Operators are rows in platform_staff (the env list only seeds an empty table); an operator acts as an owner of a customer organization per request with X-Gru-Act-As-Org; every mutation is an append-only audit event of ids and field names that survives a purge; an admin can lend a member write access to named areas for up to 30 days."
+tags: [decision, organizations, audit, staff, permissions]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-11-03T23:00:00Z }
+sources:
+  - resource: api/gru_api/domain/use_cases/audit.py
+  - resource: api/gru_api/domain/use_cases/platform_staff.py
+  - resource: api/gru_api/domain/use_cases/acting.py
+  - resource: api/gru_api/domain/use_cases/member_grants.py
+  - resource: api/gru_api/host/http/acting.py
+  - resource: api/gru_api/host/http/grants.py
+  - resource: docs/admin-panel.md
+  - resource: docs/organizations.md
+  - resource: .claude/thoughts/investigations/2026-11-03-platform-staff-admin-panel-and-audit.md
 ---
 
 # Context

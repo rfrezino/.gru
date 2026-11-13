@@ -1,7 +1,17 @@
 ---
-type: "Decision"
-title: "The control plane is Python, in a new repository, with servify's layers and a frozen compatibility surface"
-description: "gru moved from five Go modules to Python (uv workspace, async ports, domain/adapters/host layers enforced by import-linter, Lagom in the composition root, Temporal over a pure interpreter, mcp 2.x); the task runner stays Go and the sandbox agent is Python again; routes, tools, env vars, metrics and the schema did not change."
+type: Decision
+title: The control plane is Python, in a new repository, with servify's layers and a frozen compatibility surface
+description: gru moved from five Go modules to Python (uv workspace, async ports, domain/adapters/host layers enforced by import-linter, Lagom in the composition root, Temporal over a pure interpreter, mcp 2.x); the task runner stays Go and the sandbox agent is Python again; routes, tools, env vars, metrics and the schema did not change.
+tags: [decision, python, migration, architecture, layering, testing]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-29T20:00:00Z }
+sources:
+  - resource: .claude/thoughts/investigations/2026-10-29-python-control-plane-migration.md
+    title: Migration spec (Decisions 1 to 17, boundaries, error handling matrix)
+  - resource: .claude/thoughts/investigations/2026-10-29-python-migration-surface.md
+  - resource: .importlinter
+  - resource: pyproject.toml
+  - resource: CLAUDE.md
 ---
 
 # Context

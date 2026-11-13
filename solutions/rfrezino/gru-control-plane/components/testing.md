@@ -1,7 +1,15 @@
 ---
-type: "Component"
-title: "Test tiers and layout"
-description: "The four-tier test structure every project follows, where each tier lives, and the make targets that run it."
+type: Component
+title: Test tiers and layout
+description: The four-tier test structure every project follows, where each tier lives, and the make targets that run it.
+resource: tests/
+tags: [testing, convention]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T21:00:00Z }
+sources:
+  - resource: tests/README.md
+  - resource: Makefile
+  - resource: CLAUDE.md
 ---
 
 > Superseded in part by [decision 021](/decisions/021-python-control-plane.md): tests are pytest: Go build tags became markers (`integration`, `acceptance`, `e2e`, `cluster`, ...), contract suites live in `api/tests/contracts`, and a skipped test is a failure; see `tests/README.md`.

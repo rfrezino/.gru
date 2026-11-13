@@ -1,7 +1,15 @@
 ---
-type: "Decision"
-title: "Agents can ask the user a question and wait for the answer, suspended"
-description: "A sandbox that needs a decision reports a question through the runner, the backend stores it, suspends the sandbox to free its worker and resumes it with the answer; the agent restarts from a transcript in /workspace."
+type: Decision
+title: Agents can ask the user a question and wait for the answer, suspended
+description: A sandbox that needs a decision reports a question through the runner, the backend stores it, suspends the sandbox to free its worker and resumes it with the answer; the agent restarts from a transcript in /workspace.
+tags: [decision, agent, suspend, questions]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-15T20:00:00Z }
+sources:
+  - resource: api/internal/app/awaiting.go
+  - resource: images/task/runner/input.go
+  - resource: images/task/agent/internal/ask/ask.go
+  - resource: .claude/thoughts/plans/2026-10-15-awaiting-input-and-ui.md
 ---
 
 # Context

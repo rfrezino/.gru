@@ -1,7 +1,18 @@
 ---
-type: "Decision"
-title: "gru is an MCP server, for people and for its own agents"
-description: "gru-api serves MCP over streamable HTTP on the public listener (people's own clients) and on the gateway listener (the agent of a task, by its token); one adapter over the existing use cases, text results, read-only for sandboxes except delegation behind limits, and about_gru as the one text that says what gru is."
+type: Decision
+title: gru is an MCP server, for people and for its own agents
+description: gru-api serves MCP over streamable HTTP on the public listener (people's own clients) and on the gateway listener (the agent of a task, by its token); one adapter over the existing use cases, text results, read-only for sandboxes except delegation behind limits, and about_gru as the one text that says what gru is.
+tags: [decision, mcp, agent, security, gateway, api]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-26T18:00:00Z }
+sources:
+  - resource: api/internal/adapters/in/mcpserver/server.go
+  - resource: api/internal/adapters/in/mcpserver/tools.go
+  - resource: api/internal/app/delegate.go
+  - resource: api/internal/app/about/about.md
+  - resource: images/task/agent/internal/platformtools/platformtools.go
+  - resource: docs/mcp.md
+  - resource: .claude/thoughts/investigations/2026-10-23-mcp-server.md
 ---
 
 > Superseded in part by [decision 021](021-python-control-plane.md): the server is Python on the `mcp` 2.x SDK (`host/mcp`), and the Go SDK references no longer apply; tool names, audiences, limits and delegation are unchanged.

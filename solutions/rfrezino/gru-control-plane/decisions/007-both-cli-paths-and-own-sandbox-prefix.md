@@ -1,7 +1,14 @@
 ---
-type: "Decision"
-title: "Both CLI paths stay, and the API owns the gru-api- sandbox prefix"
-description: "gru run keeps its direct-AX path next to the API path, so the API's orphan sweep may only touch sandboxes under its own prefix."
+type: Decision
+title: Both CLI paths stay, and the API owns the gru-api- sandbox prefix
+description: gru run keeps its direct-AX path next to the API path, so the API's orphan sweep may only touch sandboxes under its own prefix.
+tags: [decision, cli, api, sweep, ax]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - resource: api/internal/adapters/out/ax/taskspec.go
+  - resource: api/internal/app/sweep.go
+  - resource: tests/e2e/service_test.go
 ---
 
 > **Retired 2026-10-28.** The `gru` CLI and its direct-AX path were removed (plan `retire-the-gru-cli`); callers use gru-api over HTTP or MCP. This page is history.

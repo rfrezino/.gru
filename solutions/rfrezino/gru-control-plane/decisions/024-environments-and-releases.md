@@ -1,7 +1,15 @@
 ---
-type: "Decision"
-title: "Three environments, build once and promote by digest, expand-only migrations"
-description: "Dev on k3d, staging and production on GKE; CI builds each image once per commit and promotes the same digests; production guards refuse a dev configuration; secrets are mounted files; migrations only expand while a release rolls."
+type: Decision
+title: Three environments, build once and promote by digest, expand-only migrations
+description: Dev on k3d, staging and production on GKE; CI builds each image once per commit and promotes the same digests; production guards refuse a dev configuration; secrets are mounted files; migrations only expand while a release rolls.
+tags: [decision, environments, releases, security]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-11-02T00:00:00Z }
+sources:
+  - resource: docs/releases.md
+  - resource: docs/operations.md
+  - resource: deploy/gru-api/overlays/staging/kustomization.yaml
+  - resource: api/gru_api/platform/config_environments.py
 ---
 
 # Decision

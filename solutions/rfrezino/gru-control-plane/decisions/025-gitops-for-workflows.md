@@ -1,7 +1,19 @@
 ---
-type: "Decision"
-title: "Workflows can be kept in a .gru repository and synced both ways, the repository winning"
+type: Decision
+title: Workflows can be kept in a .gru repository and synced both ways, the repository winning
 description: "An organization may switch on GitOps for its workflows: workflows/<name>.yaml in <account>/.gru is compared with the database against a stored base, the repository wins, gru's own changes are committed directly to the default branch as fast-forwards, and polling with a per-organization lease drives it."
+tags: [decision, workflows, github, gitops]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-11-03T20:00:00Z }
+sources:
+  - resource: api/gru_api/domain/use_cases/gitops.py
+  - resource: api/gru_api/domain/gitops/reconcile.py
+  - resource: api/gru_api/domain/gitops/files.py
+  - resource: api/gru_api/adapters/github/commit.py
+  - resource: api/gru_api/adapters/mysql/gitops.py
+  - resource: api/gru_api/host/http/routers/gitops.py
+  - resource: docs/gitops.md
+  - resource: .claude/thoughts/investigations/2026-11-03-gitops-workflows.md
 ---
 
 # Context

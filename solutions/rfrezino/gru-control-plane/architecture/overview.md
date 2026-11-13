@@ -1,21 +1,31 @@
 ---
-type: "Architecture Overview"
-title: "gru architecture overview"
-description: "How a prompt travels from the gru CLI through AX and Agent Substrate to an LLM and back."
+type: Architecture Overview
+title: gru architecture overview
+description: How a prompt travels from a caller through gru-api, AX and Agent Substrate to Claude and back.
+tags: [architecture, ax, substrate, gke]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - id: readme
+    resource: README.md
+    title: gru README
+  - id: ax-runner
+    resource: https://github.com/google/ax/blob/ac2332829f22360ff97b0ba34d94dd0dd782f17e/docs/runner.md
+    title: AX runner contract
 ---
 
 # Flow
 
 ```
 caller (HTTP, MCP, UI) -> gru-api (MySQL) -> ax-server (gRPC) -> Agent Substrate -> gVisor actor
-                                                              runner + gru-agent -HTTPS-> LLM provider
+                                                              runner + gru-agent -> gateway (gru-api) -HTTPS-> Claude
 
 result:  actor runner GET /gru/v1/result  <- atenet-router <- gru-api
 ```
 
 1. A caller submits the prompt to [gru-api](/components/gru-api.md) over HTTP, MCP or the UI. (The `gru` CLI and its direct-AX path were retired on 2026-10-28; see [the old component](/components/gru-cli.md).)
 2. [AX](/components/ax.md) schedules the task as an actor; [Agent Substrate](/components/agent-substrate.md) runs it in a gVisor sandbox on a pre-warmed worker.
-3. The [task image](/components/task-image.md) runs `gru-agent`, which calls the provider and writes `/workspace/answer.txt` (or `error.txt`); the image's runner serves that over HTTP.
+3. The [task image](/components/task-image.md) runs `gru-agent`, which calls Claude through gru-api's gateway (with the organization's own key, which the sandbox never sees; [LLM providers](/components/llm-providers.md)) and writes `/workspace/answer.txt` (or `error.txt`); the image's runner serves that over HTTP.
 4. The backend's reconciler reads the runner's result through `atenet-router`, stores it (kept `GRU_RESULT_TTL`), deletes the sandbox, and serves the answer on `GET /v1/tasks/{id}`.
 
 # Why a file
@@ -32,6 +42,6 @@ AX has no authentication, so [gru-api](/components/gru-api.md) is the boundary: 
 
 # What is left
 
-OIDC, provider-key delivery for GKE, router isolation, a GKE overlay and database: see the [remaining plan](/plans/backend-service.md).
+OIDC, router isolation, a GKE overlay and database: see the [remaining plan](/plans/backend-service.md).
 
 [^ax-runner]: AX runner contract

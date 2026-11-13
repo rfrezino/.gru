@@ -1,7 +1,15 @@
 ---
-type: "Component"
-title: "Local development environment"
-description: "k3d cluster, Makefile targets and Tilt resources that reproduce the stack locally."
+type: Component
+title: Local development environment
+description: k3d cluster, Makefile targets and Tilt resources that reproduce the stack locally.
+resource: dev/
+tags: [dev, k3d, tilt, make]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - resource: Makefile
+  - resource: dev/k3d.yaml
+  - resource: Tiltfile
 ---
 
 # `make up` order
@@ -14,7 +22,7 @@ description: "k3d cluster, Makefile targets and Tilt resources that reproduce th
 |---|---|
 | `make db-up` | the dev database: a Cloud SQL instance `gru-db` in [floci](/components/floci.md) (real MySQL 8.4, database and user `gru`, Service `gru-db.floci.svc`); data lives in floci's pod, so rerun it if that restarts; the password is generated locally into the Secret `gru-db-credentials` and never printed |
 | `make api-dev` | runs [gru-api](/components/gru-api.md) on your machine against the cluster (port-forwards AX, the router and MySQL) |
-| `make api-image`, `make api-up`, `make api-down` | build and push the image, deploy into `gru-system`, remove ([deployment](/components/gru-api-deployment.md)); `GRU_API_KEYS=none` skips provider keys |
+| `make api-image`, `make api-up`, `make api-down` | build and push the image, deploy into `gru-system`, remove ([deployment](/components/gru-api-deployment.md)); `api-up` also creates the dev KMS key in floci |
 | `make unit`, `integration`, `acceptance`, `e2e`, `check` (and `<project>-<tier>`, `api-vuln`) | the test tiers across projects or one by one ([testing](/components/testing.md)), and the vulnerability scan |
 
 # k3d cluster (`dev/k3d.yaml`)

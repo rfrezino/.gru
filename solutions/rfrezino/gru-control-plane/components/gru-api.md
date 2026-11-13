@@ -1,7 +1,17 @@
 ---
-type: "Component"
-title: "gru-api (backend service)"
-description: "Go service that accepts tasks over REST, persists them in MySQL, drives them through AX and returns the answer."
+type: Component
+title: gru-api (backend service)
+description: Go service that accepts tasks over REST, persists them in MySQL, drives them through AX and returns the answer.
+resource: api/
+tags: [api, backend, go, onion, reconciler, mysql]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - resource: api/cmd/gru-api/main.go
+  - resource: api/internal/app/drive.go
+  - resource: api/internal/adapters/out/ax/runtime.go
+  - resource: .claude/thoughts/investigations/2026-10-13-backend-service.md
+    title: Backend spec (contract, decisions, lessons)
 ---
 
 > Superseded in part by [decision 021](/decisions/021-python-control-plane.md): gru-api is Python now (`api/gru_api`: `domain`, `adapters`, `host`, `platform`, `container.py`); the Go package and file names in this concept are the history at the tag `pre-python-migration`. Behaviour, routes and environment variables are unchanged.
@@ -46,7 +56,7 @@ Bearer tokens (`GRU_AUTH_MODE=token`) behind an `Authenticator` seam; every task
 | Inside the cluster | `make api-image api-up`; see [deployment](/components/gru-api-deployment.md) |
 | Schema only | `gru-api --migrate-only` |
 
-Configuration is environment only (`GRU_*`; the list is in the spec). Without `--fake` it needs `GRU_MYSQL_DSN`, `GRU_TASK_IMAGE`, `GRU_AX_ADDR` and `GRU_ROUTER_URL`. Which LLM providers a task may name comes from the [provider catalog](/components/llm-providers.md) (`GRU_PROVIDERS_FILE`, else the embedded default; a catalog that does not validate stops the service): `POST /v1/tasks` takes a catalog name and a model, never a URL or key variable, and the AX adapter builds the Task env (`GRU_ADAPTER`, `GRU_BASE_URL`, `GRU_KEY_ENV`, `GRU_MODEL`) from the resolved provider. Dev only: the backend reads the provider keys from its own environment and puts them in the AX Task env as plain text.
+Configuration is environment only (`GRU_*`; the list is in the spec). Without `--fake` it needs `GRU_MYSQL_DSN`, `GRU_TASK_IMAGE`, `GRU_AX_ADDR` and `GRU_ROUTER_URL`. Which LLM providers a task may name is the [fixed list](/components/llm-providers.md) (`claude-code`, plus `echo` in dev): `POST /v1/tasks` takes a name (optional) and a model, never a URL or key variable, and the AX adapter builds the Task env (`GRU_ADAPTER`, `GRU_BASE_URL`, `GRU_KEY_ENV`, `GRU_MODEL`) from the resolved provider. The sandbox gets only a per-task gateway token; the organization's own Claude key stays in the control plane ([decision 030](/decisions/030-fixed-claude-provider-and-organization-api-key.md)).
 
 # Observability
 
@@ -61,3 +71,7 @@ JSON logs (`GRU_LOG_FORMAT=json`) that never contain prompts, answers, tokens or
 OIDC, provider-key delivery for GKE, a GKE overlay and database, observability wiring: see the [remaining plan](/plans/backend-service.md).
 
 Related: [gru CLI](/components/gru-cli.md) (its `--api` mode), [AX](/components/ax.md), [task image](/components/task-image.md).
+
+# Scheduler, run origin and Solutions Overview
+
+[Decision 032](/decisions/032-solutions-overview-and-scheduler.md). A leased `schedule-loop` (`GRU_SCHEDULE_INTERVAL`, every replica, `claim_due` with `FOR UPDATE SKIP LOCKED`) runs the periodic steps and then each due `schedules` row: a workflow target starts a normal run as the person who last saved the workflow (a workflow's `schedule:` block, parsed by an in-house cron parser, needs `limits.budget_usd` and is at most hourly; a tick is skipped while the previous run is not finished), a job target calls a registered job. Runs and tasks carry an `origin` (`system:solutions-overview`, `schedule:<name>`) that every member of the organization can read. Solutions Overview (`domain/use_cases/solutions*.py`, `/v1/solutions/*`, `/v1/organization/features`, the generic `org_features` registry in `domain/features.py`) keeps an OKF bundle per selected repository: the `solutions.refresh` job compares the live head with the stored commit, a collector starts at most three `gru-solutions-okf` runs per organization as a system principal, then stores `.okf/**/*.md` in `solution_docs` with the commit it was made from. Guides: `docs/solutions-overview.md`, `docs/workflows.md`.

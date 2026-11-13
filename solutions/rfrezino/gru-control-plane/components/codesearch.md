@@ -1,7 +1,19 @@
 ---
-type: "Service"
-title: "Code-search service (codesearch/)"
-description: "A Go service that keeps shallow default-branch mirrors of the repositories the catalog allows and answers grep, read and tree calls from gru-api, with its own API and MCP server."
+type: Service
+title: Code-search service (codesearch/)
+description: A Go service that keeps shallow default-branch mirrors of the repositories the catalog allows and answers grep, read and tree calls from gru-api, with its own API and MCP server.
+resource: codesearch/
+tags: [service, codesearch, github, mirrors]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-22T13:00:00Z }
+sources:
+  - id: decision
+    resource: /decisions/016-code-search-is-a-separate-mirror-service.md
+    title: Code search is a separate mirror service
+  - resource: codesearch/README.md
+  - resource: docs/codesearch.md
+  - resource: dev/codesearch/codesearch.yaml
+  - resource: dev/scripts/codesearch-up.sh
 ---
 
 > Superseded in part by [decision 021](/decisions/021-python-control-plane.md): the service is Python (`codesearch/gru_codesearch`); routes, limits and behaviour are unchanged.

@@ -1,8 +1,18 @@
 ---
-type: "Decision"
-title: "Pluggable LLM providers through a catalog and a port, in Go"
-description: "Vendors are entries in an operator-controlled catalog read by the API, the CLI and the agent; the agent is Go behind an LLM port implemented with any-llm-go."
+type: Decision
+title: Pluggable LLM providers through a catalog and a port, in Go
+description: Vendors are entries in an operator-controlled catalog read by the API, the CLI and the agent; the agent is Go behind an LLM port implemented with any-llm-go.
+tags: [decision, llm, providers, agent, go]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T23:30:00Z }
+sources:
+  - resource: providers/catalog.go
+  - resource: images/task/agent/internal/llm/llm.go
+  - resource: api/internal/app/submit_task.go
+  - resource: cli/cmd/gru/provider.go
 ---
+
+> Superseded in part by [decision 030](030-fixed-claude-provider-and-organization-api-key.md): the list is fixed in code (`claude-code`, plus `echo` in dev), not an operator-editable catalog; the vendor adapters other than Anthropic, the YAML catalog and `GRU_PROVIDERS_FILE` are gone.
 
 > Superseded in part by [decision 021](021-python-control-plane.md): the backend and the sandbox agent are Python now (the agent keeps the `Provider` port and the catalog, with the `anthropic` and `openai` SDKs instead of `any-llm-go`, so Python is back in the task image); "everything is Go" no longer holds. The catalog rules, the allowlist and the fail-closed behaviour stand.
 

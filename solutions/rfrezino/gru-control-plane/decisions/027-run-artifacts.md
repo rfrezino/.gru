@@ -1,7 +1,19 @@
 ---
-type: "Decision"
-title: "Run artifacts are pulled from the sandbox at settle, stored in a bucket with metadata in MySQL, and the feature is off without a bucket"
+type: Decision
+title: Run artifacts are pulled from the sandbox at settle, stored in a bucket with metadata in MySQL, and the feature is off without a bucket
 description: "Files an agent writes under work/artifacts/ are pulled through the runner when a task succeeds or fails, validated, stored in a blob store (GCS, floci in dev, memory in tests) with rows in MySQL, and listed and downloaded by the owner over HTTP, MCP and the web UI; a platform guideline teaches the agent where to write."
+tags: [decision, artifacts, storage, gcs, sandbox]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-11-04T20:00:00Z }
+sources:
+  - resource: api/gru_api/domain/use_cases/artifacts.py
+  - resource: api/gru_api/domain/use_cases/artifact_pull.py
+  - resource: api/gru_api/domain/artifact_guidelines.py
+  - resource: api/gru_api/adapters/gcs
+  - resource: api/gru_api/host/http/routers/artifacts.py
+  - resource: ui/src/components/Artifacts.tsx
+  - resource: docs/artifacts.md
+  - resource: .claude/thoughts/investigations/2026-11-04-run-artifacts.md
 ---
 
 # Context

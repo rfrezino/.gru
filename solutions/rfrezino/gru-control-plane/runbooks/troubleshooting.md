@@ -1,7 +1,10 @@
 ---
-type: "Playbook"
-title: "Troubleshooting"
-description: "Symptoms seen while building this stack, their causes and fixes."
+type: Playbook
+title: Troubleshooting
+description: Symptoms seen while building this stack, their causes and fixes.
+tags: [runbook, troubleshooting]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
 ---
 
 | Symptom | Cause | Fix |
@@ -16,8 +19,7 @@ description: "Symptoms seen while building this stack, their causes and fixes."
 | image pull `DENIED` from `gcr.io/ax-substrate` | default task image is not public | use `make task-image` and `localhost:5001/...@sha256` |
 | `a Golden data resume requires the ActorTemplate golden tag` | suspend/resume right after task creation | wait for the golden snapshot (a few seconds) |
 | `APIConnectionError` from the agent; HTTPS timeouts | tunneled egress and/or MTU | `make egress-direct net-fix`, then restart workers ([decision](/decisions/004-direct-egress-and-mss-clamp-in-dev.md)) |
-| `OPENAI_API_KEY is not set` | not exported and `.env` lacks it | export it or add it to `.env` |
-| `--model is required for the openai backend` | no default model on purpose | pass `MODEL=` |
+| 400 `your organization has not set a Claude API key` or gateway 403 `gru_no_api_key` | the organization has no key (or it was removed) | an owner or a Gru admin saves one at `/settings/claude-key`; in dev floci also loses the KMS key when its pod restarts, so enter it again |
 | floci pod crash-loops with a port parse error | service-link env var collision | `enableServiceLinks: false` |
 | AX or Substrate commands hit the wrong cluster | kube context | contexts are `k3d-gru`; `make` passes `KUBECTL_CONTEXT` |
 | every new task stays `Pending`; AX phase `Failed`; `kubectl-ate --context k3d-gru get workers` shows `1/1` actors with nothing running | actors left `RUNNING` or stuck `DELETING` by an interrupted e2e or CLI run hold both workers | `kubectl-ate --context k3d-gru delete actor --atespace default --any-state <name>` for each (list with `get actors -A`); stranded tasks then finish on their own |
