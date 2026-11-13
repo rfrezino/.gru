@@ -1,12 +1,33 @@
 ---
-type: "Project"
-title: "Wisdomfeed overview"
-description: "Multi-entity platform for belief systems with daily content, members, and AI chat."
+type: Project
+title: Meusite / wisdomfeed overview
+description: Multi-entity platform for belief systems and philosophies, each a self-contained mini-site with daily messages, members, news and comments.
+tags: [overview, product]
+generated: { by: claude-code/claude-sonnet-5-5, at: 2026-10-12T17:10:00Z }
+sources:
+  - { id: readme, resource: /README.md, title: Project vision README }
+  - { id: constitution, resource: /.specify/memory/constitution.md, title: Project constitution }
 ---
-# Overview
 
-A platform of "entities" (religions, philosophies, topics), each a self-contained mini-site at `<domain>/<entity>/<lang>` (e.g. `/bible/pt`). Entities share features (daily messages, news, members, comments/likes, themes) but differ in branding and content. Planned later: AI chat with members, tokens/payments, multi-admin delegation, mobile app.
+# What it is
 
-Stack: npm workspaces + Turborepo monorepo (`apps/web` Next.js App Router + Tailwind, `functions` Firebase Cloud Functions, `packages` reserved for a future Expo app), Firebase Auth/Firestore/Storage/App Hosting.
+A platform where each **entity** (a religion, philosophy or topic) is a separate mini-site at `/<entity>/<lang>`, e.g. `/bible/pt`.[^readme] Entities share features and UX; only branding and content differ. Entities must never cross-navigate or reference each other.[^constitution]
 
-See [architecture](/architecture/index.md), [data model](/data/firestore-schema.md), [principles](/architecture/constitution.md).
+# Current state
+
+Only the `bible` entity exists, Portuguese (`pt`) first. Shipped: daily message feed with likes/comments/replies, members, news, admin panel, reusable themes and languages, AI-assisted translation (provider stub only), profile editing.
+
+# Planned, not built
+
+Chat with AI-impersonated members, per-entity tokens, affiliate links, Expo mobile app, per-entity admin delegation. See [open risks](/decisions/open-risks.md).
+
+# Map
+
+* [Architecture](/architecture/stack.md)
+* [Firestore data model](/data/firestore-model.md)
+* [Design principles](/decisions/constitution.md)
+* [Cloud Functions](/functions/index.md)
+* [Features](/features/index.md)
+
+[^readme]: Project vision README
+[^constitution]: Project constitution
