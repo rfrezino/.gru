@@ -1,5 +1,5 @@
 version: 1
-name: fresh-plan
+name: rod-plan
 description: Write plan.md from the investigation and ask a person to approve it before any code changes. A rejection revises the plan.
 requires: [investigation.md]
 produces:

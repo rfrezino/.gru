@@ -1,5 +1,5 @@
 version: 1
-name: fresh-build
+name: rod-build
 description: Implement the approved plan phase by phase, tests first, changing only what the plan asks for.
 requires: [plan.md, investigation.md]
 stage:

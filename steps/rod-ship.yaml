@@ -1,5 +1,5 @@
 version: 1
-name: fresh-ship
+name: rod-ship
 description: Write the pull request description as the answer, then ask a person before gru opens draft PRs. Merges nothing.
 stage:
   skill: |

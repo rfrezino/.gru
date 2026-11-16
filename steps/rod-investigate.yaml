@@ -1,5 +1,5 @@
 version: 1
-name: fresh-investigate
+name: rod-investigate
 description: Document what exists and how it works, with file:line references, and write investigation.md. Documents only; suggests nothing.
 produces:
   files: [investigation.md]

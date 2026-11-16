@@ -1,5 +1,5 @@
 version: 1
-name: fresh-validate
+name: rod-validate
 description: Read-only check that the code matches plan.md; reports a verdict, with the changes needed when it does not.
 requires: [plan.md]
 stage:

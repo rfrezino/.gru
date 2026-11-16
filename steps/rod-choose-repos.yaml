@@ -1,5 +1,5 @@
 version: 1
-name: fresh-choose-repos
+name: rod-choose-repos
 description: Decide which repositories a request concerns and ask the system to seed them. Gru seeds repositories only after the stage that chooses them, so choosing is its own step.
 stage:
   skill: |
