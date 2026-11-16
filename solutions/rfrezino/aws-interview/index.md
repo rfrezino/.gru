@@ -1,9 +1,9 @@
+---
+okf_version: "0.2"
+---
 
-# aws-interview knowledge bundle
+# Index
 
-- [Interview checklist](/topics/interview-checklist.md)
-- [Parking lot design](/topics/parking-lot-design.md)
-- [System design notes](/topics/system-design-notes.md)
-- [Big O](/topics/big-o.md)
-- [Graphs and trees](/topics/graphs-and-trees.md)
-- [Playground code](/code/playground.md)
+- [Overview](overview.md)
+- [notes/](notes/index.md)
+- [algorithms/](algorithms/index.md)
