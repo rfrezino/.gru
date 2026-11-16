@@ -1,6 +1,8 @@
-# ideal-plugin (Fresh) knowledge bundle
+---
+okf_version: "0.2"
+---
+# Fresh plugin knowledge bundle
 
-- [Fresh plugin](/concepts/fresh-plugin.md): IntelliJ plugin overview and build.
-- [Test file navigation](/concepts/test-file-navigation.md): AnTestVisualizationAction base class and path mapping.
-- [Test actions](/concepts/test-actions.md): unit, integration, acceptance and source-code actions.
-- [Floating toolbar](/concepts/floating-toolbar.md): toolbar provider and plugin.xml wiring.
+- [Overview](/overview.md): what the Fresh IntelliJ plugin does
+- [components/](/components/index.md): Kotlin classes and plugin registration
+- [build/](/build/index.md): Gradle build configuration
