@@ -1,0 +1,13 @@
+version: 1
+name: hello-world
+description: A single agent that prints hello world.
+limits:
+  budget_usd: 1
+start: hello
+stages:
+  - id: hello
+    skill: |
+      Print exactly "hello world" as your answer and nothing else.
+    on_success: end
+    timeout: 5m
+    budget_usd: 0.5
