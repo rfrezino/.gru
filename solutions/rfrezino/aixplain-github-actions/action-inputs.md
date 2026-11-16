@@ -1,21 +1,23 @@
 ---
-type: "Interface"
-title: "Action inputs and entrypoint"
-description: "Inputs declared in action.yml and how they reach src/main.py."
+tags: [aixplain]
+type: Configuration
+title: Action inputs
+description: Inputs declared in action.yml and how they reach main.py.
+resource: action.yml
+generated: { by: claude-code/sonnet-5.5, at: "2026-11-16T00:00:00Z" }
 ---
 # Inputs
 
-| Input | Required | Default | Meaning |
+| Input | Required | Default | Purpose |
 |---|---|---|---|
-| openai_api_key | no | | Selects ChatGPT when non-empty |
+| openai_api_key | no | | OpenAI key; selects ChatGPT |
 | github_token | yes | | GitHub API token |
 | github_pr_id | yes | | PR number |
-| google_gemini_token | no | | Used when no OpenAI key |
-| ignore_files_with_content | no | | `;`-separated strings; files containing them are skipped |
-| ignore_files_in_paths | no | | `;`-separated fnmatch patterns, e.g. `*/test/;*/docs/` |
-| instructions | no | | `;`-separated extra review instructions |
+| google_gemini_token | no | | Gemini token |
+| ignore_files_with_content | no | | skip files containing this text |
+| ignore_files_in_paths | no | | ";"-separated glob paths, e.g. `*/test/;*/docs/` |
+| instructions | no | | ";"-separated extra review instructions |
 | google_ai_model | no | gemini-2.0-flash-001 | Gemini model |
-| google_project_name | no | | Google project |
+| google_project_name | no | | Google Cloud project (Vertex AI) |
 
-`entrypoint.sh` passes the args positionally to `python /src/main.py` as flags; the
-[Dockerfile](/overview.md) is python:3.11-slim. `main.py` calls [execute](/code/execute.md).
+Inputs are passed positionally to `entrypoint.sh`, which maps them to `--flags` of `src/main.py`. `GITHUB_REPOSITORY` comes from the environment.
