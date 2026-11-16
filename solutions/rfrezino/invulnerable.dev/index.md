@@ -1,8 +1,10 @@
-# invulnerable.dev
+---
+okf_version: "0.2"
+---
+# invulnerable.dev bundle
 
-- [Overview](/overview.md) — product, goals, messaging
-- [Frontend landing page](/frontend.md) — Vue SPA and its section components
-- [Backend API](/backend.md) — FastAPI stub
-- [Local development](/development.md) — Makefile workflow
-- [Planned license API](/license-api.md) — specified, not implemented
-- [Pricing section](/components/pricing-section.md)
+- [Overview](/overview.md) — product and repository purpose
+- [Backend](/backend.md) — FastAPI stub
+- [Frontend](/frontend.md) — Vue landing page
+- [Dev workflow](/dev-workflow.md) — Makefile targets
+- [Components](/components/index.md) — page sections

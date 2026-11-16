@@ -1,6 +1,9 @@
 ---
-type: "Component"
-title: "PricingSection"
-description: "Pricing card with the single $3,000/year offer"
+type: Component
+title: PricingSection
+tags: [invulnerable-dev]
+description: Single-plan pricing card.
+resource: frontend/src/components/PricingSection.vue
+generated: { by: "claude-code/sonnet-5.5", at: "2026-11-16T00:00:00Z" }
 ---
-Shows one card, "Any Secure Container Image", at $3,000 per year, with benefits (zero fixable CVEs, 7-day CVE SLA, CI/CD friendly, instant access, unlimited downloads/teams) and a "Subscribe Now" button whose link is a placeholder (`#`). Part of [the landing page](/frontend.md).
+One plan, "Any Secure Container Image", $3,000 per year: zero fixable CVEs, 7-day CVE SLA, CI/CD friendly, instant access, unlimited downloads and teams. The subscribe button is a placeholder link (`#`).

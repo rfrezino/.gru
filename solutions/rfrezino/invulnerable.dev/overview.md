@@ -1,11 +1,10 @@
 ---
-type: "Product"
-title: "Invulnerable.dev overview"
-description: "What the product is, goals and messaging"
+type: Product
+title: Invulnerable.dev overview
+tags: [invulnerable-dev]
+description: Storefront for secure container images with zero fixable CVEs.
+generated: { by: "claude-code/sonnet-5.5", at: "2026-11-16T00:00:00Z" }
 ---
-Invulnerable.dev sells secure container images with zero fixable CVEs, built from upstream sources such as Docker Hub, via a 1-year license. The goal is a high-converting single-scroll landing page.
+Invulnerable.dev sells a 1-year license to hardened container images (e.g. Python 3.9–3.13) built from upstream sources like Docker Hub, with weekly patching and a license key validation API. The goal is a single-scroll, high-converting landing page; the plan is in `README.md`.
 
-- Audience: DevOps teams, security-conscious startups, platform/SRE engineers.
-- Pillars: security as a service, 7-day CVE SLA, weekly patches, CI/CD friendly.
-- Brand color: #1992a5.
-- Page sections are implemented in [the frontend](/frontend.md); licensing is described in [the planned license API](/license-api.md).
+Code: [backend](/backend.md), [frontend](/frontend.md).

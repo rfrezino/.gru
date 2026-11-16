@@ -1,6 +1,14 @@
 ---
-type: "Service"
-title: "Backend API"
-description: "Minimal FastAPI app with one hello endpoint"
+type: Service
+title: Backend (FastAPI)
+tags: [invulnerable-dev]
+description: Minimal FastAPI app with a hello endpoint and open CORS.
+resource: backend/main.py
+generated: { by: "claude-code/sonnet-5.5", at: "2026-11-16T00:00:00Z" }
 ---
-FastAPI app with CORS allowing all origins, methods and headers (local dev convenience). Only endpoint: `GET /api/hello` returns `{"message": "Hello from FastAPI!"}`. Runs on 127.0.0.1:8000 with reload. Python >=3.11, no declared dependencies in `pyproject.toml`. The license endpoints in [license-api](/license-api.md) are not implemented.
+- `GET /api/hello` returns `{"message": "Hello from FastAPI!"}`.
+- CORS allows all origins, methods and headers (local frontend dev).
+- Runs via uvicorn on 127.0.0.1:8000 with reload; Python >=3.11, no dependencies declared in `pyproject.toml`.
+- The license validation API described in the README is not implemented yet.
+
+See [dev workflow](/dev-workflow.md).
