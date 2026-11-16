@@ -1,4 +1,3 @@
-# Update Log
+# Log
 
-## 2026-11-13
-* **Creation**: Scaffolded the petal bundle with `okf_init.py` — see [petal](petal-project.md).
+- 2026-11-16: Bundle created from rfrezino/petal at d795316.
