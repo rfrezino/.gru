@@ -1,8 +1,11 @@
 ---
-type: "Test Suite"
-title: "Unit tests"
-description: "DUnit tests for the profiler."
+type: Test Suite
+title: DUnit tests
+description: Test project verifying counters.
+tags: [tests, dunit]
+generated: { by: "claude-code/sonnet-5.5", at: "2026-11-16T00:00:00Z" }
+sources:
+  - { id: dpr, resource: "RfMemoryProfilerTest.dpr", title: "Test program" }
 ---
-# Unit tests
-
-`RfMemoryProfilerTest.dpr` runs DUnit cases in `TestuRfMemoryProfiler.pas` (`TestRfMemoryProfiller`, `TestBufferAllocation`, and allocation-map tests) with `uUnitTestHeader.pas` supplying helpers. Covers object counter, trace of object allocation and buffer allocation. See [options](/concepts/compile-options.md).
+# Tests
+`RfMemoryProfilerTest.dpr` runs registered DUnit tests (GUI or console runner); requires the UNITTEST project directive. Cases live in `TestuRfMemoryProfiler.pas`, with fixtures in `uUnitTestHeader.pas`. They exercise the counters of the [public API](/concepts/public-api.md).
