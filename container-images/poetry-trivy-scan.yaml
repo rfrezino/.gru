@@ -1,0 +1,27 @@
+description: Task image with Poetry and the Trivy vulnerability scanner for scanning hexagonal-py (Python 3.11)
+dockerfile: |
+  # Purpose: scan rfrezino/hexagonal-py (pyproject.toml needs python ^3.7) with
+  # Poetry-managed dependencies and Trivy. Debian bookworm ships Python 3.11.
+  FROM ${GRU_BASE_IMAGE}
+
+  ARG POETRY_VERSION=1.8.5
+  ARG TRIVY_VERSION=0.58.1
+  ARG PYTHON_VERSION=3.11
+  ENV PIP_BREAK_SYSTEM_PACKAGES=1 \
+      PIP_DISABLE_PIP_VERSION_CHECK=1
+  RUN set -eux; \
+      apt-get update; \
+      apt-get install -y --no-install-recommends ca-certificates curl tar python3 python3-pip; \
+      python3 -c "import sys; v='%d.%d' % sys.version_info[:2]; assert v == '${PYTHON_VERSION}', 'python ' + v + ' != ${PYTHON_VERSION}'"; \
+      pip install --no-cache-dir "poetry==${POETRY_VERSION}"; \
+      poetry config virtualenvs.create false; \
+      arch="$(dpkg --print-architecture)"; \
+      case "$arch" in amd64) t=64bit ;; arm64) t=ARM64 ;; *) echo "unsupported arch $arch" >&2; exit 1 ;; esac; \
+      curl -fsSL -o /tmp/trivy.tgz "https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-${t}.tar.gz"; \
+      tar -xzf /tmp/trivy.tgz -C /usr/local/bin trivy; \
+      rm -f /tmp/trivy.tgz; \
+      rm -rf /var/lib/apt/lists/*; \
+      poetry --version; \
+      trivy --version
+
+  WORKDIR /workspace/work
