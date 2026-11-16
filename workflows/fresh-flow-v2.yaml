@@ -10,31 +10,31 @@ limits:
 start: choose
 stages:
   - id: choose
-    use: fresh-choose-repos@1
+    use: rod-choose-repos@1
     on_success: investigate
 
   - id: investigate
-    use: fresh-investigate@1
+    use: rod-investigate@1
     on_success: plan
 
   - id: plan
-    use: fresh-plan@1
+    use: rod-plan@1
     on_success: build
     on_fail: plan
     max_loops: 2
     on_max_loops: fail
 
   - id: build
-    use: fresh-build@1
+    use: rod-build@1
     on_success: validate
 
   - id: validate
-    use: fresh-validate@1
+    use: rod-validate@1
     on_success: ship
     on_fail: build
     max_loops: 3
     on_max_loops: ask
 
   - id: ship
-    use: fresh-ship@1
+    use: rod-ship@1
     on_success: end
