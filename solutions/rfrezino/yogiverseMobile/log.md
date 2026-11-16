@@ -1,4 +1,4 @@
-# Log
+# Update Log
 
-## 2026-11-13
-- Bundle created from repository at commit fdbc26f.
+## 2026-11-16
+* **Creation**: Scaffolded the yogiverseMobile bundle with `okf_init.py` — see [getting started](getting-started.md).

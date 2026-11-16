@@ -1,6 +1,7 @@
 ---
-okf_version: "0.2"
+okf_version: '0.2'
 ---
+
 # yogiverseMobile
 
-- [Overview](/overview.md): what the repository contains
+* [Getting started](getting-started.md) - starting point for this bundle.
