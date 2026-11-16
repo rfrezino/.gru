@@ -1,4 +1,6 @@
+---
+okf_version: "0.2"
+---
+# sermelhor knowledge bundle
 
-# sermelhor
-
-* [Getting started](getting-started.md) - starting point for this bundle.
+- [SerMelhor](/sermelhor.md): the project and its stated purpose.

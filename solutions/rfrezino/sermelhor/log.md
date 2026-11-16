@@ -1,4 +1,4 @@
-# Update Log
+# Log
 
-## 2026-11-10
-* **Creation**: Scaffolded the sermelhor bundle with `okf_init.py` — see [getting started](getting-started.md).
+## 2026-11-16
+- Bundle created from the repository README.
