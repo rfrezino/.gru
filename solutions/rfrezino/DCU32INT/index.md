@@ -1,6 +1,7 @@
-# DCU32INT knowledge bundle
+---
+okf_version: "0.2"
+---
 
 - [Overview](/overview.md)
-- [CLI usage](/cli-usage.md)
-- [Build scripts](/build-scripts.md)
 - [modules/](/modules/index.md)
+- [usage/](/usage/index.md)

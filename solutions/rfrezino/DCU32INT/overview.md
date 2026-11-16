@@ -1,10 +1,32 @@
 ---
-type: "Overview"
-title: "DCU32INT overview"
-description: "Delphi/Kylix DCU to Pascal-like interface converter by Alexei Hmelnov"
+type: Project
+title: DCU32INT overview
+description: Delphi/Kylix DCU to Pascal-like interface converter
+tags: [dcu32int]
+generated:
+  by: claude-code/sonnet-5.5
+  at: "2026-11-16T00:00:00Z"
+sources:
+  - id: src
+    resource: readme.txt
+usage_window: {from: "2026-11-16", to: "2026-11-16"}
 ---
+
 # DCU32INT
 
-Command-line utility (Delphi project, `dcu32int.dpr`) that parses compiled Delphi 2.0–XE5 and Kylix 1.0–3.0 units (`.dcu`, also `.dcp` packages) and writes close-to-Pascal text. It recovers unit interfaces, not full source (see readme.txt for compiler information loss limits). It is a by-product of the FlexT project. Version 1.20.1.
+Utility by Alexei Hmelnov (v1.20.1) that parses compiled Delphi units (DCU, DPU, DCUIL) and packages (DCP, DCPIL) from Delphi 2 through XE5 and Kylix 1-3, and emits close-to-Pascal text (or HTML). It recovers unit interfaces, not full source. It is a by-product of the FlexT project.
 
-Modules: [DCU reader](/modules/dcu-reader.md), [tables and output](/modules/dcutbl.md), [DCP packages](/modules/dcp.md), [fixups](/modules/fixup.md), [disassemblers](/modules/disassemblers.md), [opcode names](/modules/op.md). Usage: [CLI](/cli-usage.md). Build and batch scripts: [scripts](/build-scripts.md).
+Targets: WIN32, WIN64, OSX32, .NET (MSIL), iOS simulator; iOS device and Android units lack code because the code lives in separate .o files, which are not processed.
+
+Main parts:
+- [Main program and CLI](/modules/main-program.md)
+- [DCU input reader](/modules/dcu-input.md)
+- [Unit table](/modules/unit-table.md)
+- [Fixups](/modules/fixups.md)
+- [Package support](/modules/dcp.md)
+- [Disassemblers](/modules/disassemblers.md)
+- [Opcode tables](/modules/opcode-tables.md)
+- [Batch scripts](/usage/batch-scripts.md)
+- [Build configuration](/usage/build-config.md)
+
+Source files DCU32.pas, DCU_Out.pas and DCURecs.pas are listed in the project uses clause but are not present in this checkout.
