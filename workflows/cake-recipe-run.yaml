@@ -6,5 +6,5 @@ limits:
 start: cake
 stages:
   - id: cake
-    use: cake-recipe-doc@2
+    use: cake-recipe-doc@1
     on_success: end
