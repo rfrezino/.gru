@@ -1,7 +1,15 @@
 ---
-type: "Component"
-title: "Test tiers and layout"
-description: "The four-tier test structure every project follows, where each tier lives, and the make targets that run it."
+type: Component
+title: Test tiers and layout
+description: The four-tier test structure every project follows, where each tier lives, and the make targets that run it.
+resource: tests/
+tags: [testing, convention]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T21:00:00Z }
+sources:
+  - resource: tests/README.md
+  - resource: Makefile
+  - resource: CLAUDE.md
 ---
 
 # The rule

@@ -1,7 +1,17 @@
 ---
-type: "Component"
-title: "gru CLI"
-description: "Go command that runs a prompt as an agent task and prints the answer, either straight through AX or through gru-api."
+type: Component
+title: gru CLI
+description: Go command that runs a prompt as an agent task and prints the answer, either straight through AX or through gru-api.
+resource: cli/
+tags: [cli, go]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - resource: cli/cmd/gru/main.go
+  - resource: cli/cmd/gru/api.go
+  - resource: cli/internal/axcli/axcli.go
+  - resource: cli/internal/apiclient/apiclient.go
+  - resource: cli/internal/task/manifest.go
 ---
 
 > **Retired 2026-10-28.** The `gru` CLI and its direct-AX path were removed (plan `retire-the-gru-cli`); callers use gru-api over HTTP or MCP. This page is history.

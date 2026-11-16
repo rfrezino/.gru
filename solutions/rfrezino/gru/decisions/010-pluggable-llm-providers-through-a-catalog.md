@@ -1,7 +1,15 @@
 ---
-type: "Decision"
-title: "Pluggable LLM providers through a catalog and a port, in Go"
-description: "Vendors are entries in an operator-controlled catalog read by the API, the CLI and the agent; the agent is Go behind an LLM port implemented with any-llm-go."
+type: Decision
+title: Pluggable LLM providers through a catalog and a port, in Go
+description: Vendors are entries in an operator-controlled catalog read by the API, the CLI and the agent; the agent is Go behind an LLM port implemented with any-llm-go.
+tags: [decision, llm, providers, agent, go]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T23:30:00Z }
+sources:
+  - resource: providers/catalog.go
+  - resource: images/task/agent/internal/llm/llm.go
+  - resource: api/internal/app/submit_task.go
+  - resource: cli/cmd/gru/provider.go
 ---
 
 # Context

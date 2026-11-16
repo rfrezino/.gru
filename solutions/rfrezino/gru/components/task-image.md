@@ -1,7 +1,23 @@
 ---
-type: "Container Image"
-title: "Task image (images/task)"
-description: "Sandbox image with the gru runner (which serves the result over HTTP) and gru-agent, the Go agent that calls the configured LLM provider."
+type: Container Image
+title: Task image (images/task)
+description: Sandbox image with the gru runner (which serves the result over HTTP) and gru-agent, the Go agent that calls the configured LLM provider.
+resource: images/task/
+tags: [image, agent, sandbox, runner]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - id: decision
+    resource: /decisions/006-result-via-runner-http-and-router.md
+    title: Result channel decision
+  - resource: images/task/Dockerfile
+  - resource: images/task/agent/internal/llm/llm.go
+  - resource: images/task/agent/internal/run/run.go
+  - resource: images/task/agent/internal/tools/box.go
+  - resource: images/task/runner/workspace.go
+  - resource: images/task/runner/archive.go
+  - resource: images/task/runner/main.go
+  - resource: dev/scripts/build-runner.sh
 ---
 
 # Contents

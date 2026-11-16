@@ -1,7 +1,15 @@
 ---
-type: "Component"
-title: "Web UI"
-description: "TypeScript single-page app to start runs, see what needs an answer, answer an agent's questions and read each run as a thread; the only non-Go project."
+type: Component
+title: Web UI
+description: TypeScript single-page app to start runs, see what needs an answer, answer an agent's questions and read each run as a thread; the only non-Go project.
+resource: ui/
+tags: [ui, typescript]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-15T23:00:00Z }
+sources:
+  - resource: ui/README.md
+  - resource: ui/src/api/client.ts
+  - resource: api/openapi.yaml
 ---
 
 # What it is

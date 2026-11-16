@@ -1,7 +1,19 @@
 ---
-type: "External Dependency"
-title: "Agent Substrate"
-description: "Sandboxed actor runtime on Kubernetes that AX schedules tasks onto; install, components and the pieces we configure."
+type: External Dependency
+title: Agent Substrate
+description: Sandboxed actor runtime on Kubernetes that AX schedules tasks onto; install, components and the pieces we configure.
+resource: https://github.com/agent-substrate/substrate
+tags: [substrate, external, gvisor, upstream]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-13T20:00:00Z }
+stale_after: 2026-12-31T00:00:00Z
+sources:
+  - id: gvisor
+    resource: https://github.com/agent-substrate/substrate/blob/944abe3278b895ccbf5d45555a49dd0f2f6ceae7/manifests/ate-install/sandboxconfig-gvisor.yaml
+    title: gVisor sandbox config with per-arch assets
+  - id: apiflag
+    resource: https://github.com/agent-substrate/substrate/blob/944abe3278b895ccbf5d45555a49dd0f2f6ceae7/cmd/ateapi/main.go
+    title: ate-api-server flags including egress-gateway-address
 ---
 
 Pinned at `944abe3` (2026-09-18), the commit AX depends on.

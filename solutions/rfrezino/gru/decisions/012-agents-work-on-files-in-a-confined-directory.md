@@ -1,7 +1,17 @@
 ---
-type: "Decision"
-title: "Workflow stage agents work on files in a confined directory, with narrow tools and no shell"
-description: "A workflow stage's agent gets read, list, search, write and edit tools rooted at /workspace/work, a review stage only reads and submits a structured verdict, and there is no shell or network tool."
+type: Decision
+title: Workflow stage agents work on files in a confined directory, with narrow tools and no shell
+description: A workflow stage's agent gets read, list, search, write and edit tools rooted at /workspace/work, a review stage only reads and submits a structured verdict, and there is no shell or network tool.
+tags: [decision, agent, tools, security, workflows]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-15T23:00:00Z }
+sources:
+  - resource: images/task/agent/internal/tools/files.go
+  - resource: images/task/agent/internal/tools/box.go
+  - resource: images/task/agent/internal/tools/verdict.go
+  - resource: images/task/agent/internal/llm/anyllm.go
+  - resource: .claude/thoughts/investigations/2026-10-15-user-composed-workflows.md
+  - resource: .claude/thoughts/plans/2026-10-15-workflows-phase-3-stage-agent.md
 ---
 
 # Context

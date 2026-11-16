@@ -1,7 +1,12 @@
 ---
-type: "Playbook"
-title: "Local development workflow"
-description: "Bring the dev environment up, run a prompt, and tear it down."
+type: Playbook
+title: Local development workflow
+description: Bring the dev environment up, run a prompt, and tear it down.
+tags: [runbook, dev, make]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - resource: README.md
 ---
 
 # Prerequisites

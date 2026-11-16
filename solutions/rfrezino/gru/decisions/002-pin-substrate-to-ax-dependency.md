@@ -1,7 +1,15 @@
 ---
-type: "Decision"
-title: "Pin Substrate to the commit google/ax depends on"
-description: "AX builds against Substrate 944abe3; newer Substrate breaks AX's template creation."
+type: Decision
+title: Pin Substrate to the commit google/ax depends on
+description: AX builds against Substrate 944abe3; newer Substrate breaks AX's template creation.
+tags: [decision, pinning, ax, substrate]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-13T20:00:00Z }
+sources:
+  - id: axmod
+    resource: https://github.com/google/ax/blob/ac2332829f22360ff97b0ba34d94dd0dd782f17e/go.mod
+    title: AX go.mod
+  - resource: Makefile
 ---
 
 # Context

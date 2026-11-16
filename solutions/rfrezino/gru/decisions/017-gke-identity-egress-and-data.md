@@ -1,7 +1,14 @@
 ---
-type: "Decision"
-title: "GKE identity, egress and data handling"
-description: "Who may call gru-api (Google identities through IAP for people, projected Kubernetes service account tokens for services, no static tokens), how traffic leaves the cluster (a sandbox reaches only gru-api; the control plane leaves through Cloud NAT and FQDN policy), and how long prompts, answers and work directories are kept (encrypted with CMEK, short fixed retention, purged by a job)."
+type: Decision
+title: GKE identity, egress and data handling
+description: Who may call gru-api (Google identities through IAP for people, projected Kubernetes service account tokens for services, no static tokens), how traffic leaves the cluster (a sandbox reaches only gru-api; the control plane leaves through Cloud NAT and FQDN policy), and how long prompts, answers and work directories are kept (encrypted with CMEK, short fixed retention, purged by a job).
+tags: [decision, gke, security, identity, egress, privacy]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-22T15:00:00Z }
+sources:
+  - resource: .claude/thoughts/plans/in-progress/2026-10-14-backend-phase-6c-gke.md
+  - resource: api/internal/adapters/in/http/oidc.go
+  - resource: .okf/decisions/015-prompts-are-kept.md
 ---
 
 # Context

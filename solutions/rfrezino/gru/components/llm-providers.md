@@ -1,7 +1,16 @@
 ---
-type: "Component"
-title: "LLM providers (catalog and port)"
-description: "How gru decides which LLM vendors may receive prompts and how the sandbox agent talks to them, so adding a vendor is configuration."
+type: Component
+title: LLM providers (catalog and port)
+description: How gru decides which LLM vendors may receive prompts and how the sandbox agent talks to them, so adding a vendor is configuration.
+resource: providers/
+tags: [llm, providers, catalog, agent]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T23:00:00Z }
+sources:
+  - resource: providers/catalog.go
+  - resource: providers/default.yaml
+  - resource: images/task/agent/internal/llm/llm.go
+  - resource: images/task/agent/internal/llm/anyllm.go
 ---
 
 # Two pieces

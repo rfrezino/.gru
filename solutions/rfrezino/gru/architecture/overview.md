@@ -1,7 +1,17 @@
 ---
-type: "Architecture Overview"
-title: "gru architecture overview"
-description: "How a prompt travels from the gru CLI through AX and Agent Substrate to an LLM and back."
+type: Architecture Overview
+title: gru architecture overview
+description: How a prompt travels from the gru CLI through AX and Agent Substrate to an LLM and back.
+tags: [architecture, ax, substrate, gke]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - id: readme
+    resource: README.md
+    title: gru README
+  - id: ax-runner
+    resource: https://github.com/google/ax/blob/ac2332829f22360ff97b0ba34d94dd0dd782f17e/docs/runner.md
+    title: AX runner contract
 ---
 
 # Flow

@@ -1,7 +1,14 @@
 ---
-type: "Decision"
-title: "Return results through a file in /workspace"
-description: "The agent writes answer.txt and the CLI reads it with ax ssh on the direct-AX path, because AX returns no task output."
+type: Decision
+title: Return results through a file in /workspace
+description: The agent writes answer.txt and the CLI reads it with ax ssh on the direct-AX path, because AX returns no task output.
+tags: [decision, results, ax, ssh]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - id: runner
+    resource: https://github.com/google/ax/blob/ac2332829f22360ff97b0ba34d94dd0dd782f17e/docs/runner.md
+    title: AX runner contract
 ---
 
 # Context

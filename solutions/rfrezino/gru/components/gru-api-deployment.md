@@ -1,7 +1,18 @@
 ---
-type: "Component"
-title: "gru-api deployment (k3d)"
+type: Component
+title: gru-api deployment (k3d)
 description: "How gru-api runs inside the dev cluster: manifests, network policies, tokens, and the Go tests that check them."
+resource: deploy/gru-api/
+tags: [deploy, kubernetes, networkpolicy, security, k3d]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - resource: deploy/gru-api/base/deployment.yaml
+  - resource: deploy/gru-api/base/networkpolicy.yaml
+  - resource: deploy/gru-api/base/worker-deployment.yaml
+  - resource: deploy/temporal/deployment.yaml
+  - resource: dev/scripts/api-up.sh
+  - resource: tests/e2e/cluster/cluster_test.go
 ---
 
 # Install

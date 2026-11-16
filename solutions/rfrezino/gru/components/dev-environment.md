@@ -1,7 +1,15 @@
 ---
-type: "Component"
-title: "Local development environment"
-description: "k3d cluster, Makefile targets and Tilt resources that reproduce the stack locally."
+type: Component
+title: Local development environment
+description: k3d cluster, Makefile targets and Tilt resources that reproduce the stack locally.
+resource: dev/
+tags: [dev, k3d, tilt, make]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - resource: Makefile
+  - resource: dev/k3d.yaml
+  - resource: Tiltfile
 ---
 
 # `make up` order

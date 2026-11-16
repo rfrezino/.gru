@@ -1,7 +1,14 @@
 ---
-type: "Decision"
-title: "Floci provides all GCP-shaped infra in dev"
-description: "Dev uses floci for every GCP service gru depends on (GCS, Cloud SQL, later others), including those that need Docker, instead of one-off substitutes."
+type: Decision
+title: Floci provides all GCP-shaped infra in dev
+description: Dev uses floci for every GCP service gru depends on (GCS, Cloud SQL, later others), including those that need Docker, instead of one-off substitutes.
+tags: [decision, floci, gke, dev]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T22:00:00Z }
+sources:
+  - resource: dev/floci/floci-gcp.yaml
+  - resource: dev/floci/create-sql-job.yaml
+  - resource: dev/scripts/db-up.sh
 ---
 
 # Context

@@ -1,7 +1,15 @@
 ---
-type: "Decision"
-title: "Read results over HTTP from the runner, through atenet-router"
-description: "The sandbox serves its answer on port 80 and the backend reads it via atenet-router, replacing ax ssh and spec.debug for the API path."
+type: Decision
+title: Read results over HTTP from the runner, through atenet-router
+description: The sandbox serves its answer on port 80 and the backend reads it via atenet-router, replacing ax ssh and spec.debug for the API path.
+tags: [decision, results, ax, router, runner]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - resource: images/task/runner/result.go
+  - resource: api/internal/adapters/out/ax/router.go
+  - resource: .claude/thoughts/investigations/2026-10-14-result-channel-decision.md
+    title: Result channel decision record (options, evidence, GKE risks)
 ---
 
 # Context

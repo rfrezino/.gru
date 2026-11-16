@@ -1,7 +1,17 @@
 ---
-type: "Component"
-title: "gru-api (backend service)"
-description: "Go service that accepts tasks over REST, persists them in MySQL, drives them through AX and returns the answer."
+type: Component
+title: gru-api (backend service)
+description: Go service that accepts tasks over REST, persists them in MySQL, drives them through AX and returns the answer.
+resource: api/
+tags: [api, backend, go, onion, reconciler, mysql]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - resource: api/cmd/gru-api/main.go
+  - resource: api/internal/app/drive.go
+  - resource: api/internal/adapters/out/ax/runtime.go
+  - resource: .claude/thoughts/investigations/2026-10-13-backend-service.md
+    title: Backend spec (contract, decisions, lessons)
 ---
 
 # What it does

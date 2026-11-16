@@ -1,7 +1,13 @@
 ---
-type: "Decision"
-title: "Emulate GCS with floci in dev"
-description: "Dev snapshots use the GCS code path through floci-gcp instead of Substrate's S3 default."
+type: Decision
+title: Emulate GCS with floci in dev
+description: Dev snapshots use the GCS code path through floci-gcp instead of Substrate's S3 default.
+tags: [decision, floci, gcs, gke]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-13T20:00:00Z }
+sources:
+  - resource: Makefile
+  - resource: dev/floci/floci-gcp.yaml
 ---
 
 # Context

@@ -1,7 +1,15 @@
 ---
-type: "Plan"
+type: Plan
 title: "Backend service: what is left (GKE hardening)"
-description: "The backend is built and verified on k3d; this is the remaining work to run it on a shared GKE cluster and the decisions it waits on."
+description: The backend is built and verified on k3d; this is the remaining work to run it on a shared GKE cluster and the decisions it waits on.
+tags: [plan, backend, gke, security, oidc]
+status: draft
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
+sources:
+  - resource: .claude/thoughts/plans/2026-10-14-backend-phase-6c-gke.md
+    title: Phase 6c plan (work items and exit criteria)
+  - resource: .claude/thoughts/investigations/2026-10-13-backend-service.md
+    title: Backend spec (open questions and risks)
 ---
 
 The planned backend now exists: see [gru-api](/components/gru-api.md) and its [deployment](/components/gru-api-deployment.md). What it does not have is everything specific to a shared GKE cluster. The detailed plan with work items and exit criteria is `.claude/thoughts/plans/2026-10-14-backend-phase-6c-gke.md`.

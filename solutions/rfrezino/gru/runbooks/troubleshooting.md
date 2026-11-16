@@ -1,7 +1,10 @@
 ---
-type: "Playbook"
-title: "Troubleshooting"
-description: "Symptoms seen while building this stack, their causes and fixes."
+type: Playbook
+title: Troubleshooting
+description: Symptoms seen while building this stack, their causes and fixes.
+tags: [runbook, troubleshooting]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-14T19:00:00Z }
 ---
 
 | Symptom | Cause | Fix |

@@ -1,7 +1,16 @@
 ---
-type: "External Dependency"
-title: "floci-gcp"
-description: "Local GCP emulator that stands in for every GCP service gru uses in dev, namely GCS for snapshots and Cloud SQL (a real MySQL 8.4) for the store."
+type: External Dependency
+title: floci-gcp
+description: Local GCP emulator that stands in for every GCP service gru uses in dev, namely GCS for snapshots and Cloud SQL (a real MySQL 8.4) for the store.
+resource: https://floci.io/gcp/
+tags: [floci, gcs, cloud-sql, dev, emulator]
+status: stable
+generated: { by: claude-code/sonnet-5.5, at: 2026-10-13T20:00:00Z }
+sources:
+  - resource: dev/floci/floci-gcp.yaml
+  - resource: dev/floci/create-sql-job.yaml
+  - resource: dev/scripts/db-up.sh
+  - resource: https://github.com/floci-io/floci-gcp
 ---
 
 Image `floci/floci-gcp` (pinned by digest in `dev/floci/floci-gcp.yaml`, arm64 available), version 0.10.0 at the time of writing, port 4588.
