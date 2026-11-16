@@ -1,6 +1,6 @@
 version: 1
-name: fresh-flow
-description: Investigate, plan, build, validate and ship a change, the way /fresh-investigate, /fresh-plan, /fresh-build and /fresh-ship do locally. A person approves the plan and the pull request.
+name: rod-flow
+description: Investigate, plan, build, validate and ship a change, the way /rod-investigate, /rod-plan, /rod-build and /rod-ship do locally. A person approves the plan and the pull request.
 repos:
   select_in: [choose]
   max_repos: 3
