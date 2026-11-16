@@ -1,17 +1,23 @@
 ---
 type: Container Image
 title: Python slim images
-description: Dockerfiles for python 3.11, 3.12 and 3.13 slim base images with CVE fixes applied.
-resource: python/slim/
-tags: [docker, security]
-generated: { by: "claude-code/sonnet-5-5", at: "2026-11-13T00:00:00Z" }
+description: Dockerfiles for python:3.11/3.12/3.13-slim bases with CVE fixes applied.
+tags: [docker, python, security]
+generated: { by: "claude-code/sonnet-5.5", at: "2026-11-16T00:00:00Z" }
+sources:
+  - { id: dockerfiles, resource: "python/slim/", title: "Dockerfile.3.11, 3.12, 3.13" }
 ---
 # Overview
 
-Three Dockerfiles live in `python/slim/`: `Dockerfile.3.11`, `Dockerfile.3.12`, `Dockerfile.3.13`. They are identical except for the base tag (`python:<ver>-slim`) and the label.
+Repository `invulnerable.dev-images` holds hardened base images. Each file `python/slim/Dockerfile.<version>` starts from `python:<version>-slim` (stage `base`), sets `WORKDIR /app`, and adds label `org.invulnerable.image_layer_1='PUBLIC/python:<version>-slim'` recording the upstream image.
 
-- Base stage `base`, `WORKDIR /app`.
-- Label `org.invulnerable.image_layer_1` records the public upstream image, e.g. `PUBLIC/python:3.12-slim`.
-- A "Vulnerabilities fixes" section installs patched packages; currently `libpcre2-8-0` for CVE-2025-58050.
+# Vulnerability fixes
 
-See [Vulnerability fix pattern](/vulnerability-fix-pattern.md).
+| Version | Fix |
+|---|---|
+| 3.11 | Upgrade pip and setuptools>=78.1.1 (CVE-2024-6345, CVE-2025-47273, CVE-2022-40897) |
+| 3.11, 3.12, 3.13 | Install libpcre2-8-0 via apt (CVE-2025-58050) |
+
+The apt step uses `--no-install-recommends` and removes `/var/lib/apt/lists/*`.[^dockerfiles]
+
+[^dockerfiles]: python/slim/Dockerfile.3.11, 3.12, 3.13
