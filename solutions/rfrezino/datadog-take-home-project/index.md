@@ -1,4 +1,8 @@
-# datadog-take-home-project
+---
+okf_version: "0.2"
+---
+# HTTP Log Monitor knowledge bundle
 
-- [overview.md](/overview.md): what the HTTP log monitor does and how it runs
-- [modules/](/modules/index.md): per-module concepts
+- [Overview](/overview.md)
+- [Components](/components/index.md)
+- [Guides](/guides/index.md)

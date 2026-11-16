@@ -1,18 +1,27 @@
 ---
-type: "Project Overview"
-title: "HTTP log monitor overview"
-description: "Python console app that tails a W3C access log, prints periodic statistics and high-traffic alerts."
+type: Overview
+title: HTTP Log Monitor overview
+tags: [log-monitor]
+description: What the application does and how it is structured
+generated:
+  by: claude-code/sonnet-5.5
+  at: "2026-11-16T00:00:00Z"
+sources:
+  - id: repo
+    resource: https://github.com/rfrezino/datadog-take-home-project/tree/57801b5
+    title: rfrezino/datadog-take-home-project at 57801b5
 ---
-# Overview
+# HTTP Log Monitor
 
-Take-home project: a console program that consumes an actively written W3C/common-format HTTP access log
-(`remotehost rfc931 authuser [date] "request" status bytes`).
+A Python 3.8 console application (take-home project) that watches a W3C/common-format HTTP access log file, periodically prints traffic statistics and raises/recovers a high-traffic alert. Design follows a functional-programming style: frozen dataclasses, small pure functions, impure code isolated in thread jobs.
 
-Pipeline: [file reader job](/modules/file-reader-job.md) reads new lines, [parser](/modules/w3c-parser.md)
-and a mapper convert them to `LogLine` objects in a thread-safe list, and the
-[processor job](/modules/loglines-processor-job.md) consumes them to run the [report](/modules/report-task.md)
-and [alert](/modules/alert-task.md) tasks. Wiring lives in [log-monitor](/modules/log-monitor.md); the CLI is [application](/modules/application.md).
+## Pipeline
+1. [CLI entry point](/components/application.md) parses options and starts the [log monitor](/components/log-monitor.md).
+2. [W3C log reader job](/components/w3c-log-file-reader-job.md) (producer thread) reads new lines using the [file reader](/components/file-reader.md), parses them with the [W3C parser](/components/w3c-parser.md), maps them via the [mapper](/components/logline-mapper.md) and pushes [LogLines](/components/loglines.md) into a [ThreadSafeList](/components/thread-safe-list.md).
+3. [LogLines processor job](/components/loglines-processor-job.md) (consumer thread) drains the list and runs two tasks: [statistics report](/components/task-report-statistics.md) and [high traffic alert](/components/task-alert-excessive-traffic.md).
 
-Layout: `src/` (w3c_log, file_watcher, mapper, loglines, tasks, jobs, log_monitor, thread_utils, docker_utils),
-`tests/` (unit_tests, integration_test, acceptance_test). Tests run via `make run_unit_tests`,
-`make run_integration_tests`, `make run_acceptance_tests`; Dockerfile and Pipfile provided.
+See also [running and testing](/guides/running-and-testing.md).
+
+## Known limitations (from the README)
+- Log history is never trimmed from memory.
+- Little error handling for file reads; unhappy-path tests are missing.
