@@ -1,22 +1,28 @@
 ---
-type: "Overview"
-title: "RFindUnit overview"
-description: "What RFindUnit is and how its parts fit together."
+type: Overview
+title: RFindUnit overview
+description: Delphi IDE plugin that finds units, auto-imports, organizes uses and flags unused uses
+tags:
+- rfindunit
+status: stable
+generated:
+  by: claude-code/sonnet-5.5
+  at: '2026-11-16T22:10:00Z'
+sources:
+- id: src
+  resource: README.md
 ---
-# RFindUnit
 
-A Delphi IDE plugin (Open Tools API package) by Rodrigo Farias Rezino that replaces the slow Find Unit dialog (Ctrl+Shift+A), and adds auto import of missing units, organize uses (Ctrl+Shift+U) and unused-uses detection (experimental).
+RFindUnit is a Delphi IDE expert (Delphi Seattle/Berlin/Tokyo) that replaces the slow Find Unit dialog (Ctrl+Shift+A).
 
-## Flow
-1. [IDE Integration](/components/ide-integration.md) registers keybindings and menus.
-2. [Environment Controller](/components/environment-controller.md) scans the library path and project paths via the [Parser Worker](/components/parser-worker.md).
-3. The worker parses `.pas` files with the [Pas Parser](/components/pas-parser.md) (DelphiAST); `.dcu` files are first decompiled by the [DCU Decompiler](/components/dcu-decompiler.md).
-4. Results live in the [Units Cache](/components/units-cache.md) and are queried for search, [Auto Import](/components/auto-import.md) and [Unused Uses](/components/unused-uses.md).
+# Features
+- Find unit: fast search of declared identifiers, handled by [search](/components/search.md).
+- Auto import of missing units: [auto-import](/components/auto-import.md).
+- Auto organize uses (Ctrl+Shift+U), sorted and split per namespace.
+- Unused uses detection (experimental): [unused-uses](/components/unused-uses.md).
 
-## Layout
-- `Source/` plugin units (`FindUnit.*.pas`, forms `.dfm`)
-- `Interfaces/` `Interf.*` interfaces
-- `ideInteraction/implementations/` IDE painting of unused uses
-- `Test/` DUnit tests (parser, search string, unused uses)
-- `Packages/` per-Delphi-version packages
-- `Thirdy/` bundled libraries, see [Third-party](/components/third-party.md)
+# Architecture
+- [Plugin entry](/components/plugin-entry.md) registers keyboard bindings and wires the [environment controller](/components/environment-controller.md).
+- [Parser worker](/components/parser-worker.md) scans project and library paths using the [Pascal parser](/components/pas-parser.md) (built on DelphiAST) and fills the [unit cache](/components/unit-cache.md).
+- [DCU decompiler](/components/dcu-decompiler.md) reads compiled units via Dcu32Int when sources are unavailable.
+- [Build and packaging](/components/build-and-packaging.md) and [third-party code](/components/third-party.md) and [tests](/components/tests.md).

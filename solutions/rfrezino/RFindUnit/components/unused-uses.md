@@ -1,8 +1,16 @@
 ---
-type: "Component"
-title: "Unused Uses"
-description: "Detects unused units in a uses clause."
+type: Component
+title: Unused uses
+description: TUnsedUsesProcessor finds unused units (experimental)
+tags:
+- rfindunit
+status: stable
+generated:
+  by: claude-code/sonnet-5.5
+  at: '2026-11-16T22:10:00Z'
+sources:
+- id: src
+  resource: Source/FindUnit.UnusedUses.pas
 ---
-# Unused Uses
 
-`TUnsedUsesProcessor` (`Source/FindUnit.UnusedUses.pas`) parses a file, collects used types, units in uses, ignored types/uses and optional prefixes, and computes unused ones (`uetUnused`, `uetNoPasFile`); `GetUnusedUsesAsString` reports. Needs the [Environment Controller](/components/environment-controller.md) to resolve units. Experimental; must be enabled in settings. Tests in `Test/TestUnsedUses.pas`.
+`TUnsedUsesProcessor` parses a file with the [Pascal parser](/components/pas-parser.md) and checks which used units contribute identifiers. Results are painted in the editor by `ideInteraction/implementations/FindUnit.PaintUnusedUses.pas`. Must be enabled as an experimental setting.

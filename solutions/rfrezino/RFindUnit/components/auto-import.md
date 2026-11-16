@@ -1,8 +1,16 @@
 ---
-type: "Component"
-title: "Auto Import"
-description: "Imports a unit for an undeclared identifier."
+type: Component
+title: Auto import
+description: TAutoImport adds missing units to uses clauses
+tags:
+- rfindunit
+status: stable
+generated:
+  by: claude-code/sonnet-5.5
+  at: '2026-11-16T22:10:00Z'
+sources:
+- id: src
+  resource: Source/FindUnit.AutoImport.pas
 ---
-# Auto Import
 
-`TAutoImport` (`Source/FindUnit.AutoImport.pas`) reads compiler "undeclared identifier" messages (see `FindUnit.CompilerInterceptor`) to build a list of classes/units to import, and memorizes the user-chosen unit per class in an INI file (`GetMemorizedUnit`, `SetMemorizedUnit`). Triggered from [IDE Integration](/components/ide-integration.md).
+`TAutoImport` resolves the identifier under the cursor via [search](/components/search.md) and inserts the unit in the interface or implementation `uses` clause using `FindUnit.FileEditor`.

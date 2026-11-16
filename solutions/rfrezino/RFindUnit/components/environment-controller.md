@@ -1,8 +1,16 @@
 ---
-type: "Component"
-title: "Environment Controller"
-description: "Owns library-path and project-path unit indexes."
+type: Component
+title: Environment controller
+description: Coordinates IDE state, project storage and parsing
+tags:
+- rfindunit
+status: stable
+generated:
+  by: claude-code/sonnet-5.5
+  at: '2026-11-16T22:10:00Z'
+sources:
+- id: src
+  resource: Source/FindUnit.EnvironmentController.pas
 ---
-# Environment Controller
 
-`TEnvironmentController` (`Source/FindUnit.EnvironmentController.pas`, interface `Interf.EnvironmentController`) implements IOTAProjectFileStorageNotifier. It loads library path (`LoadLibraryPath`) and project path (`LoadProjectPath`) units through the [Parser Worker](/components/parser-worker.md), reacts to project load/save/close, exposes `GetProjectUnits`, `GetLibraryPathUnits`, `GetFullMatch`, `PasExists`, readiness and status flags, and `ProcessDCUFiles`. Results are held in [Units Cache](/components/units-cache.md) objects.
+`TEnvironmentController` (interface `IRFUEnvironmentController` in `Interfaces/`) implements `IOTAProjectFileStorageNotifier`. It tracks the active project, owns the [parser worker](/components/parser-worker.md) and [unit cache](/components/unit-cache.md), and exposes search and import to the [plugin entry](/components/plugin-entry.md). `FindUnit.OTAUtils` holds Open Tools API helpers.

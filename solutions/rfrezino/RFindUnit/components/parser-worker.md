@@ -1,8 +1,16 @@
 ---
-type: "Component"
-title: "Parser Worker"
-description: "Background scanning and parsing of pas/dcu files."
+type: Component
+title: Parser worker
+description: Background worker parsing Pascal files into the unit cache
+tags:
+- rfindunit
+status: stable
+generated:
+  by: claude-code/sonnet-5.5
+  at: '2026-11-16T22:10:00Z'
+sources:
+- id: src
+  resource: Source/FindUnit.Worker.pas
 ---
-# Parser Worker
 
-`TParserWorker` (`Source/FindUnit.Worker.pas`) lists `.pas` and `.dcu` files in directories, drops dcu files that already have a pas, generates pas from the rest via the [DCU Decompiler](/components/dcu-decompiler.md), parses files in parallel (`ParseFilesParallel`) and returns a `TUnits` ([Units Cache](/components/units-cache.md)) either synchronously (`Start`) or through a `TOnFinished` callback. Parsing is done by the [Pas Parser](/components/pas-parser.md).
+`TParserWorker` runs the background scan of project and library paths, parsing files with the [Pascal parser](/components/pas-parser.md), falling back to the [DCU decompiler](/components/dcu-decompiler.md), and storing results in the [unit cache](/components/unit-cache.md). `FindUnit.IncluderHandlerInc` resolves `{$I}` include files.

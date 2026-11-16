@@ -1,8 +1,16 @@
 ---
-type: "Component"
-title: "Pas Parser"
-description: "Extracts declarations from Delphi source units."
+type: Component
+title: Pascal parser
+description: TPasFile/TPasFileParser extract units, types and identifiers
+tags:
+- rfindunit
+status: stable
+generated:
+  by: claude-code/sonnet-5.5
+  at: '2026-11-16T22:10:00Z'
+sources:
+- id: src
+  resource: Source/FindUnit.PasParser.pas
 ---
-# Pas Parser
 
-`TPasFileParser` (`Source/FindUnit.PasParser.pas`) uses DelphiAST to build a `TPasFile`: unit name, last modification, types (classes, records, interfaces, enums, references, subranges), methods, variables and constants. `SetIncluder` takes an `IIncludeHandler` (`FindUnit.IncluderHandlerInc`) to resolve `{$I}` includes. Tests: `Test/TestPasParserpas.pas`.
+`TPasFileParser` uses [DelphiAST](/components/third-party.md) to build `TPasFile` models: unit name, uses lists, and declared classes, methods, fields and constants. Used by the [parser worker](/components/parser-worker.md) and [unused uses](/components/unused-uses.md). `FindUnit.DelphiReservedWords` filters reserved words.
