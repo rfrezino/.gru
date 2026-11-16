@@ -1,5 +1,5 @@
 version: 1
-name: fresh-flow-v2
+name: rod-flow-v2
 description: Investigate, plan, build, validate and ship a change, the way /fresh-investigate, /fresh-plan, /fresh-build and /fresh-ship do locally. A person approves the plan and the pull request. The stage texts live in the fresh-* steps; this file is only the wiring.
 repos:
   select_in: [choose]
